@@ -10,14 +10,12 @@
 -behaviour(gen_statem).
 
 %% API
--export([callback_mode/0]).
+-export([callback_mode/0, init/1]).
 -export([start_link/0]).
 
 %%====================================================================
 %% API. Defines the methods available
 %%====================================================================
-
-
 
 start_link() ->
   gen_statem:start_link({local, ?MODULE}, ?MODULE, [], []).
@@ -26,13 +24,8 @@ start_link() ->
 %% Mandatory callback functions
 %%====================================================================
 init([]) ->
-  {ok, [{token, Token}]} = file:consult(code:priv_dir/1(sentibot) ++ "/slack.config"),
-
-  {Pid, TeamDataMap, WsUrl} = request_ws_channel(Token),
-  WsPid = make_ws_connection(WsUrl),
-
-  {ok, connecting, #state{pid=Pid, ws_pid=WsPid, teamdata=TeamDataMap,
-    token=Token, message_id=0}}.
+  %{ok, [{token, Token}]} = file:consult(code:priv_dir/1(sentibot) ++ "/slack.config"),
+  {ok, connecting, {}}.
 
 callback_mode() ->
   erlang:error(not_implemented).
