@@ -33,7 +33,8 @@ init([]) ->
   SupFlags = #{strategy => one_for_one, intensity => 1, period => 5}, % TODO check that
   ChildSpecs = [
     ?CHILD(sentibot_kvs, worker),
-    ?CHILD(sentibot_slack, worker)
+    ?CHILD(sentibot_slack, worker),
+    ?CHILD(sentibot_wss, worker)
   ],
   {ok, {SupFlags, ChildSpecs}}.
 %{ok, { {one_for_all, 0, 1}, []} }.
