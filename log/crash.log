@@ -1,0 +1,377 @@
+2017-06-13 23:03:58 =SUPERVISOR REPORT====
+     Supervisor: {local,sentibot_sup}
+     Context:    start_error
+     Reason:     {'EXIT',{undef,[{sentibot_kvs,start_link,[],[]},{supervisor,do_start_child,2,[{file,"supervisor.erl"},{line,365}]},{supervisor,start_children,3,[{file,"supervisor.erl"},{line,348}]},{supervisor,init_children,2,[{file,"supervisor.erl"},{line,314}]},{gen_server,init_it,6,[{file,"gen_server.erl"},{line,328}]},{proc_lib,init_p_do_apply,3,[{file,"proc_lib.erl"},{line,247}]}]}}
+     Offender:   [{pid,undefined},{id,sentibot_kvs},{mfargs,{sentibot_kvs,start_link,[]}},{restart_type,permanent},{shutdown,brutal_kill},{child_type,worker}]
+
+2017-06-13 23:03:58 =CRASH REPORT====
+  crasher:
+    initial call: application_master:init/4
+    pid: <0.223.0>
+    registered_name: []
+    exception exit: {{{shutdown,{failed_to_start_child,sentibot_kvs,{'EXIT',{undef,[{sentibot_kvs,start_link,[],[]},{supervisor,do_start_child,2,[{file,"supervisor.erl"},{line,365}]},{supervisor,start_children,3,[{file,"supervisor.erl"},{line,348}]},{supervisor,init_children,2,[{file,"supervisor.erl"},{line,314}]},{gen_server,init_it,6,[{file,"gen_server.erl"},{line,328}]},{proc_lib,init_p_do_apply,3,[{file,"proc_lib.erl"},{line,247}]}]}}}},{sentibot_app,start,[normal,[]]}},[{application_master,init,4,[{file,"application_master.erl"},{line,134}]},{proc_lib,init_p_do_apply,3,[{file,"proc_lib.erl"},{line,247}]}]}
+    ancestors: [<0.222.0>]
+    messages: [{'EXIT',<0.224.0>,normal}]
+    links: [<0.222.0>,<0.31.0>]
+    dictionary: []
+    trap_exit: true
+    status: running
+    heap_size: 610
+    stack_size: 27
+    reductions: 141
+  neighbours:
+2017-06-13 23:42:27 =CRASH REPORT====
+  crasher:
+    initial call: sentibot_kvs:init/1
+    pid: <0.257.0>
+    registered_name: []
+    exception exit: {{undef,[{sentibot_kvs,init,[[]],[]},{gen_fsm,init_it,6,[{file,"gen_fsm.erl"},{line,325}]},{proc_lib,init_p_do_apply,3,[{file,"proc_lib.erl"},{line,247}]}]},[{gen_fsm,init_it,6,[{file,"gen_fsm.erl"},{line,343}]},{proc_lib,init_p_do_apply,3,[{file,"proc_lib.erl"},{line,247}]}]}
+    ancestors: [sentibot_sup,<0.224.0>]
+    messages: []
+    links: [<0.256.0>]
+    dictionary: []
+    trap_exit: false
+    status: running
+    heap_size: 376
+    stack_size: 27
+    reductions: 114
+  neighbours:
+2017-06-13 23:42:27 =SUPERVISOR REPORT====
+     Supervisor: {local,sentibot_sup}
+     Context:    start_error
+     Reason:     {undef,[{sentibot_kvs,init,[[]],[]},{gen_fsm,init_it,6,[{file,"gen_fsm.erl"},{line,325}]},{proc_lib,init_p_do_apply,3,[{file,"proc_lib.erl"},{line,247}]}]}
+     Offender:   [{pid,undefined},{id,sentibot_kvs},{mfargs,{sentibot_kvs,start_link,[]}},{restart_type,permanent},{shutdown,brutal_kill},{child_type,worker}]
+
+2017-06-13 23:42:27 =CRASH REPORT====
+  crasher:
+    initial call: application_master:init/4
+    pid: <0.223.0>
+    registered_name: []
+    exception exit: {{{shutdown,{failed_to_start_child,sentibot_kvs,{undef,[{sentibot_kvs,init,[[]],[]},{gen_fsm,init_it,6,[{file,"gen_fsm.erl"},{line,325}]},{proc_lib,init_p_do_apply,3,[{file,"proc_lib.erl"},{line,247}]}]}}},{sentibot_app,start,[normal,[]]}},[{application_master,init,4,[{file,"application_master.erl"},{line,134}]},{proc_lib,init_p_do_apply,3,[{file,"proc_lib.erl"},{line,247}]}]}
+    ancestors: [<0.222.0>]
+    messages: [{'EXIT',<0.224.0>,normal}]
+    links: [<0.222.0>,<0.31.0>]
+    dictionary: []
+    trap_exit: true
+    status: running
+    heap_size: 610
+    stack_size: 27
+    reductions: 100
+  neighbours:
+2017-06-14 01:08:22 =ERROR REPORT====
+** State machine sentibot_kvs terminating 
+** Last message in was {'$gen_call',{<0.399.0>,#Ref<0.0.1.6305>},{put,"Alice",happy}}
+** When State == {state,#{happy => ":)",sad => ":("},undefined}
+**      Data  == {state,undefined,#{}}
+** Reason for termination = 
+** {'function not exported',[{sentibot_kvs,terminate,[{undef,[{sentibot_kvs,handle_info,[{'$gen_call',{<0.399.0>,#Ref<0.0.1.6305>},{put,"Alice",happy}},{state,#{happy => ":)",sad => ":("},undefined},{state,undefined,#{}}],[]},{gen_fsm,handle_msg,7,[{file,"gen_fsm.erl"},{line,451}]},{proc_lib,init_p_do_apply,3,[{file,"proc_lib.erl"},{line,247}]}]},{state,#{happy => ":)",sad => ":("},undefined},{state,undefined,#{}}],[]},{gen_fsm,terminate,7,[{file,"gen_fsm.erl"},{line,543}]},{proc_lib,init_p_do_apply,3,[{file,"proc_lib.erl"},{line,247}]}]}
+2017-06-14 01:08:22 =CRASH REPORT====
+  crasher:
+    initial call: sentibot_kvs:init/1
+    pid: <0.397.0>
+    registered_name: sentibot_kvs
+    exception exit: {{undef,[{sentibot_kvs,terminate,[{undef,[{sentibot_kvs,handle_info,[{'$gen_call',{<0.399.0>,#Ref<0.0.1.6305>},{put,"Alice",happy}},{state,#{happy => ":)",sad => ":("},undefined},{state,undefined,#{}}],[]},{gen_fsm,handle_msg,7,[{file,"gen_fsm.erl"},{line,451}]},{proc_lib,init_p_do_apply,3,[{file,"proc_lib.erl"},{line,247}]}]},{state,#{happy => ":)",sad => ":("},undefined},{state,undefined,#{}}],[]},{gen_fsm,terminate,7,[{file,"gen_fsm.erl"},{line,543}]},{proc_lib,init_p_do_apply,3,[{file,"proc_lib.erl"},{line,247}]}]},[{gen_fsm,terminate,7,[{file,"gen_fsm.erl"},{line,547}]},{proc_lib,init_p_do_apply,3,[{file,"proc_lib.erl"},{line,247}]}]}
+    ancestors: [sentibot_sup,<0.364.0>]
+    messages: []
+    links: [<0.396.0>]
+    dictionary: []
+    trap_exit: false
+    status: running
+    heap_size: 610
+    stack_size: 27
+    reductions: 235
+  neighbours:
+2017-06-14 01:08:22 =SUPERVISOR REPORT====
+     Supervisor: {local,sentibot_sup}
+     Context:    child_terminated
+     Reason:     {undef,[{sentibot_kvs,terminate,[{undef,[{sentibot_kvs,handle_info,[{'$gen_call',{<0.399.0>,#Ref<0.0.1.6305>},{put,"Alice",happy}},{state,#{happy => ":)",sad => ":("},undefined},{state,undefined,#{}}],[]},{gen_fsm,handle_msg,7,[{file,"gen_fsm.erl"},{line,451}]},{proc_lib,init_p_do_apply,3,[{file,"proc_lib.erl"},{line,247}]}]},{state,#{happy => ":)",sad => ":("},undefined},{state,undefined,#{}}],[]},{gen_fsm,terminate,7,[{file,"gen_fsm.erl"},{line,543}]},{proc_lib,init_p_do_apply,3,[{file,"proc_lib.erl"},{line,247}]}]}
+     Offender:   [{pid,<0.397.0>},{id,sentibot_kvs},{mfargs,{sentibot_kvs,start_link,[]}},{restart_type,permanent},{shutdown,brutal_kill},{child_type,worker}]
+
+2017-06-14 01:09:55 =ERROR REPORT====
+** State machine sentibot_kvs terminating 
+** Last message in was {'$gen_call',{<0.402.0>,#Ref<0.0.1.6315>},{put,"Alice",happy}}
+** When State == {state,#{happy => ":)",sad => ":("},undefined}
+**      Data  == {state,undefined,#{}}
+** Reason for termination = 
+** {'function not exported',[{sentibot_kvs,terminate,[{undef,[{sentibot_kvs,handle_info,[{'$gen_call',{<0.402.0>,#Ref<0.0.1.6315>},{put,"Alice",happy}},{state,#{happy => ":)",sad => ":("},undefined},{state,undefined,#{}}],[]},{gen_fsm,handle_msg,7,[{file,"gen_fsm.erl"},{line,451}]},{proc_lib,init_p_do_apply,3,[{file,"proc_lib.erl"},{line,247}]}]},{state,#{happy => ":)",sad => ":("},undefined},{state,undefined,#{}}],[]},{gen_fsm,terminate,7,[{file,"gen_fsm.erl"},{line,543}]},{proc_lib,init_p_do_apply,3,[{file,"proc_lib.erl"},{line,247}]}]}
+2017-06-14 01:09:55 =CRASH REPORT====
+  crasher:
+    initial call: sentibot_kvs:init/1
+    pid: <0.401.0>
+    registered_name: sentibot_kvs
+    exception exit: {{undef,[{sentibot_kvs,terminate,[{undef,[{sentibot_kvs,handle_info,[{'$gen_call',{<0.402.0>,#Ref<0.0.1.6315>},{put,"Alice",happy}},{state,#{happy => ":)",sad => ":("},undefined},{state,undefined,#{}}],[]},{gen_fsm,handle_msg,7,[{file,"gen_fsm.erl"},{line,451}]},{proc_lib,init_p_do_apply,3,[{file,"proc_lib.erl"},{line,247}]}]},{state,#{happy => ":)",sad => ":("},undefined},{state,undefined,#{}}],[]},{gen_fsm,terminate,7,[{file,"gen_fsm.erl"},{line,543}]},{proc_lib,init_p_do_apply,3,[{file,"proc_lib.erl"},{line,247}]}]},[{gen_fsm,terminate,7,[{file,"gen_fsm.erl"},{line,547}]},{proc_lib,init_p_do_apply,3,[{file,"proc_lib.erl"},{line,247}]}]}
+    ancestors: [sentibot_sup,<0.364.0>]
+    messages: []
+    links: [<0.396.0>]
+    dictionary: []
+    trap_exit: false
+    status: running
+    heap_size: 610
+    stack_size: 27
+    reductions: 224
+  neighbours:
+2017-06-14 01:09:55 =SUPERVISOR REPORT====
+     Supervisor: {local,sentibot_sup}
+     Context:    child_terminated
+     Reason:     {undef,[{sentibot_kvs,terminate,[{undef,[{sentibot_kvs,handle_info,[{'$gen_call',{<0.402.0>,#Ref<0.0.1.6315>},{put,"Alice",happy}},{state,#{happy => ":)",sad => ":("},undefined},{state,undefined,#{}}],[]},{gen_fsm,handle_msg,7,[{file,"gen_fsm.erl"},{line,451}]},{proc_lib,init_p_do_apply,3,[{file,"proc_lib.erl"},{line,247}]}]},{state,#{happy => ":)",sad => ":("},undefined},{state,undefined,#{}}],[]},{gen_fsm,terminate,7,[{file,"gen_fsm.erl"},{line,543}]},{proc_lib,init_p_do_apply,3,[{file,"proc_lib.erl"},{line,247}]}]}
+     Offender:   [{pid,<0.401.0>},{id,sentibot_kvs},{mfargs,{sentibot_kvs,start_link,[]}},{restart_type,permanent},{shutdown,brutal_kill},{child_type,worker}]
+
+2017-06-14 01:15:09 =CRASH REPORT====
+  crasher:
+    initial call: sentibot_kvs:init/1
+    pid: <0.263.0>
+    registered_name: sentibot_kvs
+    exception exit: {{bad_return_value,{ok,{state,#{happy => ":)",sad => ":("},#{}}}},[{gen_fsm,init_it,6,[{file,"gen_fsm.erl"},{line,347}]},{proc_lib,init_p_do_apply,3,[{file,"proc_lib.erl"},{line,247}]}]}
+    ancestors: [sentibot_sup,<0.230.0>]
+    messages: []
+    links: [<0.262.0>]
+    dictionary: []
+    trap_exit: false
+    status: running
+    heap_size: 233
+    stack_size: 27
+    reductions: 111
+  neighbours:
+2017-06-14 01:15:09 =SUPERVISOR REPORT====
+     Supervisor: {local,sentibot_sup}
+     Context:    start_error
+     Reason:     {bad_return_value,{ok,{state,#{happy => ":)",sad => ":("},#{}}}}
+     Offender:   [{pid,undefined},{id,sentibot_kvs},{mfargs,{sentibot_kvs,start_link,[]}},{restart_type,permanent},{shutdown,brutal_kill},{child_type,worker}]
+
+2017-06-14 01:15:09 =CRASH REPORT====
+  crasher:
+    initial call: application_master:init/4
+    pid: <0.229.0>
+    registered_name: []
+    exception exit: {{{shutdown,{failed_to_start_child,sentibot_kvs,{bad_return_value,{ok,{state,#{happy => ":)",sad => ":("},#{}}}}}},{sentibot_app,start,[normal,[]]}},[{application_master,init,4,[{file,"application_master.erl"},{line,134}]},{proc_lib,init_p_do_apply,3,[{file,"proc_lib.erl"},{line,247}]}]}
+    ancestors: [<0.228.0>]
+    messages: [{'EXIT',<0.230.0>,normal}]
+    links: [<0.228.0>,<0.31.0>]
+    dictionary: []
+    trap_exit: true
+    status: running
+    heap_size: 610
+    stack_size: 27
+    reductions: 121
+  neighbours:
+2017-06-14 01:18:40 =CRASH REPORT====
+  crasher:
+    initial call: sentibot_kvs:init/1
+    pid: <0.257.0>
+    registered_name: sentibot_kvs
+    exception exit: {{bad_return_value,{ok,{state,#{happy => ":)",sad => ":("},#{}}}},[{gen_fsm,init_it,6,[{file,"gen_fsm.erl"},{line,347}]},{proc_lib,init_p_do_apply,3,[{file,"proc_lib.erl"},{line,247}]}]}
+    ancestors: [sentibot_sup,<0.224.0>]
+    messages: []
+    links: [<0.256.0>]
+    dictionary: []
+    trap_exit: false
+    status: running
+    heap_size: 233
+    stack_size: 27
+    reductions: 111
+  neighbours:
+2017-06-14 01:18:40 =SUPERVISOR REPORT====
+     Supervisor: {local,sentibot_sup}
+     Context:    start_error
+     Reason:     {bad_return_value,{ok,{state,#{happy => ":)",sad => ":("},#{}}}}
+     Offender:   [{pid,undefined},{id,sentibot_kvs},{mfargs,{sentibot_kvs,start_link,[]}},{restart_type,permanent},{shutdown,brutal_kill},{child_type,worker}]
+
+2017-06-14 01:18:40 =CRASH REPORT====
+  crasher:
+    initial call: application_master:init/4
+    pid: <0.223.0>
+    registered_name: []
+    exception exit: {{{shutdown,{failed_to_start_child,sentibot_kvs,{bad_return_value,{ok,{state,#{happy => ":)",sad => ":("},#{}}}}}},{sentibot_app,start,[normal,[]]}},[{application_master,init,4,[{file,"application_master.erl"},{line,134}]},{proc_lib,init_p_do_apply,3,[{file,"proc_lib.erl"},{line,247}]}]}
+    ancestors: [<0.222.0>]
+    messages: [{'EXIT',<0.224.0>,normal}]
+    links: [<0.222.0>,<0.31.0>]
+    dictionary: []
+    trap_exit: true
+    status: running
+    heap_size: 610
+    stack_size: 27
+    reductions: 121
+  neighbours:
+2017-06-14 01:20:15 =CRASH REPORT====
+  crasher:
+    initial call: sentibot_kvs:init/1
+    pid: <0.263.0>
+    registered_name: sentibot_kvs
+    exception exit: {{bad_return_value,{ok,{#{happy => ":)",sad => ":("},#{}}}},[{gen_fsm,init_it,6,[{file,"gen_fsm.erl"},{line,347}]},{proc_lib,init_p_do_apply,3,[{file,"proc_lib.erl"},{line,247}]}]}
+    ancestors: [sentibot_sup,<0.230.0>]
+    messages: []
+    links: [<0.262.0>]
+    dictionary: []
+    trap_exit: false
+    status: running
+    heap_size: 233
+    stack_size: 27
+    reductions: 111
+  neighbours:
+2017-06-14 01:20:15 =SUPERVISOR REPORT====
+     Supervisor: {local,sentibot_sup}
+     Context:    start_error
+     Reason:     {bad_return_value,{ok,{#{happy => ":)",sad => ":("},#{}}}}
+     Offender:   [{pid,undefined},{id,sentibot_kvs},{mfargs,{sentibot_kvs,start_link,[]}},{restart_type,permanent},{shutdown,brutal_kill},{child_type,worker}]
+
+2017-06-14 01:20:15 =CRASH REPORT====
+  crasher:
+    initial call: application_master:init/4
+    pid: <0.229.0>
+    registered_name: []
+    exception exit: {{{shutdown,{failed_to_start_child,sentibot_kvs,{bad_return_value,{ok,{#{happy => ":)",sad => ":("},#{}}}}}},{sentibot_app,start,[normal,[]]}},[{application_master,init,4,[{file,"application_master.erl"},{line,134}]},{proc_lib,init_p_do_apply,3,[{file,"proc_lib.erl"},{line,247}]}]}
+    ancestors: [<0.228.0>]
+    messages: [{'EXIT',<0.230.0>,normal}]
+    links: [<0.228.0>,<0.31.0>]
+    dictionary: []
+    trap_exit: true
+    status: running
+    heap_size: 610
+    stack_size: 27
+    reductions: 121
+  neighbours:
+2017-06-14 01:24:23 =ERROR REPORT====
+** State machine sentibot_kvs terminating 
+** Last message in was {'$gen_call',{<0.226.0>,#Ref<0.0.1.212>},{put,"Alice",happy}}
+** When State == {state,#{happy => ":)",sad => ":("},#{}}
+**      Data  == infinity
+** Reason for termination = 
+** {'function not exported',[{sentibot_kvs,terminate,[{undef,[{sentibot_kvs,handle_info,[{'$gen_call',{<0.226.0>,#Ref<0.0.1.212>},{put,"Alice",happy}},{state,#{happy => ":)",sad => ":("},#{}},infinity],[]},{gen_fsm,handle_msg,7,[{file,"gen_fsm.erl"},{line,451}]},{proc_lib,init_p_do_apply,3,[{file,"proc_lib.erl"},{line,247}]}]},{state,#{happy => ":)",sad => ":("},#{}},infinity],[]},{gen_fsm,terminate,7,[{file,"gen_fsm.erl"},{line,543}]},{proc_lib,init_p_do_apply,3,[{file,"proc_lib.erl"},{line,247}]}]}
+2017-06-14 01:24:23 =CRASH REPORT====
+  crasher:
+    initial call: sentibot_kvs:init/1
+    pid: <0.263.0>
+    registered_name: sentibot_kvs
+    exception exit: {{undef,[{sentibot_kvs,terminate,[{undef,[{sentibot_kvs,handle_info,[{'$gen_call',{<0.226.0>,#Ref<0.0.1.212>},{put,"Alice",happy}},{state,#{happy => ":)",sad => ":("},#{}},infinity],[]},{gen_fsm,handle_msg,7,[{file,"gen_fsm.erl"},{line,451}]},{proc_lib,init_p_do_apply,3,[{file,"proc_lib.erl"},{line,247}]}]},{state,#{happy => ":)",sad => ":("},#{}},infinity],[]},{gen_fsm,terminate,7,[{file,"gen_fsm.erl"},{line,543}]},{proc_lib,init_p_do_apply,3,[{file,"proc_lib.erl"},{line,247}]}]},[{gen_fsm,terminate,7,[{file,"gen_fsm.erl"},{line,547}]},{proc_lib,init_p_do_apply,3,[{file,"proc_lib.erl"},{line,247}]}]}
+    ancestors: [sentibot_sup,<0.230.0>]
+    messages: []
+    links: [<0.262.0>]
+    dictionary: []
+    trap_exit: false
+    status: running
+    heap_size: 610
+    stack_size: 27
+    reductions: 235
+  neighbours:
+2017-06-14 01:24:23 =SUPERVISOR REPORT====
+     Supervisor: {local,sentibot_sup}
+     Context:    child_terminated
+     Reason:     {undef,[{sentibot_kvs,terminate,[{undef,[{sentibot_kvs,handle_info,[{'$gen_call',{<0.226.0>,#Ref<0.0.1.212>},{put,"Alice",happy}},{state,#{happy => ":)",sad => ":("},#{}},infinity],[]},{gen_fsm,handle_msg,7,[{file,"gen_fsm.erl"},{line,451}]},{proc_lib,init_p_do_apply,3,[{file,"proc_lib.erl"},{line,247}]}]},{state,#{happy => ":)",sad => ":("},#{}},infinity],[]},{gen_fsm,terminate,7,[{file,"gen_fsm.erl"},{line,543}]},{proc_lib,init_p_do_apply,3,[{file,"proc_lib.erl"},{line,247}]}]}
+     Offender:   [{pid,<0.263.0>},{id,sentibot_kvs},{mfargs,{sentibot_kvs,start_link,[]}},{restart_type,permanent},{shutdown,brutal_kill},{child_type,worker}]
+
+2017-06-14 01:25:44 =ERROR REPORT====
+** State machine sentibot_kvs terminating 
+** Last message in was {'$gen_call',{<0.220.0>,#Ref<0.0.3.3894>},{put,"Alice",happy}}
+** When State == {state,#{happy => ":)",sad => ":("},#{}}
+**      Data  == infinity
+** Reason for termination = 
+** {'function not exported',[{sentibot_kvs,terminate,[{undef,[{sentibot_kvs,handle_info,[{'$gen_call',{<0.220.0>,#Ref<0.0.3.3894>},{put,"Alice",happy}},{state,#{happy => ":)",sad => ":("},#{}},infinity],[]},{gen_fsm,handle_msg,7,[{file,"gen_fsm.erl"},{line,451}]},{proc_lib,init_p_do_apply,3,[{file,"proc_lib.erl"},{line,247}]}]},{state,#{happy => ":)",sad => ":("},#{}},infinity],[]},{gen_fsm,terminate,7,[{file,"gen_fsm.erl"},{line,543}]},{proc_lib,init_p_do_apply,3,[{file,"proc_lib.erl"},{line,247}]}]}
+2017-06-14 01:25:44 =CRASH REPORT====
+  crasher:
+    initial call: sentibot_kvs:init/1
+    pid: <0.257.0>
+    registered_name: sentibot_kvs
+    exception exit: {{undef,[{sentibot_kvs,terminate,[{undef,[{sentibot_kvs,handle_info,[{'$gen_call',{<0.220.0>,#Ref<0.0.3.3894>},{put,"Alice",happy}},{state,#{happy => ":)",sad => ":("},#{}},infinity],[]},{gen_fsm,handle_msg,7,[{file,"gen_fsm.erl"},{line,451}]},{proc_lib,init_p_do_apply,3,[{file,"proc_lib.erl"},{line,247}]}]},{state,#{happy => ":)",sad => ":("},#{}},infinity],[]},{gen_fsm,terminate,7,[{file,"gen_fsm.erl"},{line,543}]},{proc_lib,init_p_do_apply,3,[{file,"proc_lib.erl"},{line,247}]}]},[{gen_fsm,terminate,7,[{file,"gen_fsm.erl"},{line,547}]},{proc_lib,init_p_do_apply,3,[{file,"proc_lib.erl"},{line,247}]}]}
+    ancestors: [sentibot_sup,<0.224.0>]
+    messages: []
+    links: [<0.256.0>]
+    dictionary: []
+    trap_exit: false
+    status: running
+    heap_size: 610
+    stack_size: 27
+    reductions: 235
+  neighbours:
+2017-06-14 01:25:44 =SUPERVISOR REPORT====
+     Supervisor: {local,sentibot_sup}
+     Context:    child_terminated
+     Reason:     {undef,[{sentibot_kvs,terminate,[{undef,[{sentibot_kvs,handle_info,[{'$gen_call',{<0.220.0>,#Ref<0.0.3.3894>},{put,"Alice",happy}},{state,#{happy => ":)",sad => ":("},#{}},infinity],[]},{gen_fsm,handle_msg,7,[{file,"gen_fsm.erl"},{line,451}]},{proc_lib,init_p_do_apply,3,[{file,"proc_lib.erl"},{line,247}]}]},{state,#{happy => ":)",sad => ":("},#{}},infinity],[]},{gen_fsm,terminate,7,[{file,"gen_fsm.erl"},{line,543}]},{proc_lib,init_p_do_apply,3,[{file,"proc_lib.erl"},{line,247}]}]}
+     Offender:   [{pid,<0.257.0>},{id,sentibot_kvs},{mfargs,{sentibot_kvs,start_link,[]}},{restart_type,permanent},{shutdown,brutal_kill},{child_type,worker}]
+
+2017-06-14 01:30:33 =ERROR REPORT====
+** State machine sentibot_kvs terminating 
+** Last message in was {'$gen_call',{<0.260.0>,#Ref<0.0.3.7224>},{get}}
+** When State == {state,#{happy => ":)",sad => ":("},#{}}
+**      Data  == infinity
+** Reason for termination = 
+** {'function not exported',[{sentibot_kvs,handle_info,[{'$gen_call',{<0.260.0>,#Ref<0.0.3.7224>},{get}},{state,#{happy => ":)",sad => ":("},#{}},infinity],[]},{gen_fsm,handle_msg,7,[{file,"gen_fsm.erl"},{line,451}]},{proc_lib,init_p_do_apply,3,[{file,"proc_lib.erl"},{line,247}]}]}
+2017-06-14 01:30:33 =CRASH REPORT====
+  crasher:
+    initial call: sentibot_kvs:init/1
+    pid: <0.259.0>
+    registered_name: sentibot_kvs
+    exception exit: {{undef,[{sentibot_kvs,handle_info,[{'$gen_call',{<0.260.0>,#Ref<0.0.3.7224>},{get}},{state,#{happy => ":)",sad => ":("},#{}},infinity],[]},{gen_fsm,handle_msg,7,[{file,"gen_fsm.erl"},{line,451}]},{proc_lib,init_p_do_apply,3,[{file,"proc_lib.erl"},{line,247}]}]},[{gen_fsm,terminate,7,[{file,"gen_fsm.erl"},{line,559}]},{proc_lib,init_p_do_apply,3,[{file,"proc_lib.erl"},{line,247}]}]}
+    ancestors: [sentibot_sup,<0.224.0>]
+    messages: []
+    links: [<0.256.0>]
+    dictionary: []
+    trap_exit: false
+    status: running
+    heap_size: 987
+    stack_size: 27
+    reductions: 191
+  neighbours:
+2017-06-14 01:30:33 =SUPERVISOR REPORT====
+     Supervisor: {local,sentibot_sup}
+     Context:    child_terminated
+     Reason:     {undef,[{sentibot_kvs,handle_info,[{'$gen_call',{<0.260.0>,#Ref<0.0.3.7224>},{get}},{state,#{happy => ":)",sad => ":("},#{}},infinity],[]},{gen_fsm,handle_msg,7,[{file,"gen_fsm.erl"},{line,451}]},{proc_lib,init_p_do_apply,3,[{file,"proc_lib.erl"},{line,247}]}]}
+     Offender:   [{pid,<0.259.0>},{id,sentibot_kvs},{mfargs,{sentibot_kvs,start_link,[]}},{restart_type,permanent},{shutdown,brutal_kill},{child_type,worker}]
+
+2017-06-14 01:33:33 =ERROR REPORT====
+** State machine sentibot_kvs terminating 
+** Last message in was {'$gen_call',{<0.226.0>,#Ref<0.0.1.200>},{put,"Alice",happy}}
+** When State == {state,#{happy => ":)",sad => ":("},#{}}
+**      Data  == infinity
+** Reason for termination = 
+** {'function not exported',[{sentibot_kvs,terminate,[{undef,[{sentibot_kvs,handle_info,[{'$gen_call',{<0.226.0>,#Ref<0.0.1.200>},{put,"Alice",happy}},{state,#{happy => ":)",sad => ":("},#{}},infinity],[]},{gen_fsm,handle_msg,7,[{file,"gen_fsm.erl"},{line,451}]},{proc_lib,init_p_do_apply,3,[{file,"proc_lib.erl"},{line,247}]}]},{state,#{happy => ":)",sad => ":("},#{}},infinity],[]},{gen_fsm,terminate,7,[{file,"gen_fsm.erl"},{line,543}]},{proc_lib,init_p_do_apply,3,[{file,"proc_lib.erl"},{line,247}]}]}
+2017-06-14 01:33:33 =CRASH REPORT====
+  crasher:
+    initial call: sentibot_kvs:init/1
+    pid: <0.263.0>
+    registered_name: sentibot_kvs
+    exception exit: {{undef,[{sentibot_kvs,terminate,[{undef,[{sentibot_kvs,handle_info,[{'$gen_call',{<0.226.0>,#Ref<0.0.1.200>},{put,"Alice",happy}},{state,#{happy => ":)",sad => ":("},#{}},infinity],[]},{gen_fsm,handle_msg,7,[{file,"gen_fsm.erl"},{line,451}]},{proc_lib,init_p_do_apply,3,[{file,"proc_lib.erl"},{line,247}]}]},{state,#{happy => ":)",sad => ":("},#{}},infinity],[]},{gen_fsm,terminate,7,[{file,"gen_fsm.erl"},{line,543}]},{proc_lib,init_p_do_apply,3,[{file,"proc_lib.erl"},{line,247}]}]},[{gen_fsm,terminate,7,[{file,"gen_fsm.erl"},{line,547}]},{proc_lib,init_p_do_apply,3,[{file,"proc_lib.erl"},{line,247}]}]}
+    ancestors: [sentibot_sup,<0.230.0>]
+    messages: []
+    links: [<0.262.0>]
+    dictionary: []
+    trap_exit: false
+    status: running
+    heap_size: 610
+    stack_size: 27
+    reductions: 235
+  neighbours:
+2017-06-14 01:33:33 =SUPERVISOR REPORT====
+     Supervisor: {local,sentibot_sup}
+     Context:    child_terminated
+     Reason:     {undef,[{sentibot_kvs,terminate,[{undef,[{sentibot_kvs,handle_info,[{'$gen_call',{<0.226.0>,#Ref<0.0.1.200>},{put,"Alice",happy}},{state,#{happy => ":)",sad => ":("},#{}},infinity],[]},{gen_fsm,handle_msg,7,[{file,"gen_fsm.erl"},{line,451}]},{proc_lib,init_p_do_apply,3,[{file,"proc_lib.erl"},{line,247}]}]},{state,#{happy => ":)",sad => ":("},#{}},infinity],[]},{gen_fsm,terminate,7,[{file,"gen_fsm.erl"},{line,543}]},{proc_lib,init_p_do_apply,3,[{file,"proc_lib.erl"},{line,247}]}]}
+     Offender:   [{pid,<0.263.0>},{id,sentibot_kvs},{mfargs,{sentibot_kvs,start_link,[]}},{restart_type,permanent},{shutdown,brutal_kill},{child_type,worker}]
+
+2017-06-14 01:35:16 =ERROR REPORT====
+** State machine sentibot_kvs terminating 
+** Last message in was {'$gen_call',{<0.266.0>,#Ref<0.0.1.215>},{get}}
+** When State == {state,#{happy => ":)",sad => ":("},#{}}
+**      Data  == infinity
+** Reason for termination = 
+** {'function not exported',[{sentibot_kvs,terminate,[{undef,[{sentibot_kvs,handle_info,[{'$gen_call',{<0.266.0>,#Ref<0.0.1.215>},{get}},{state,#{happy => ":)",sad => ":("},#{}},infinity],[]},{gen_fsm,handle_msg,7,[{file,"gen_fsm.erl"},{line,451}]},{proc_lib,init_p_do_apply,3,[{file,"proc_lib.erl"},{line,247}]}]},{state,#{happy => ":)",sad => ":("},#{}},infinity],[]},{gen_fsm,terminate,7,[{file,"gen_fsm.erl"},{line,543}]},{proc_lib,init_p_do_apply,3,[{file,"proc_lib.erl"},{line,247}]}]}
+2017-06-14 01:35:16 =CRASH REPORT====
+  crasher:
+    initial call: sentibot_kvs:init/1
+    pid: <0.265.0>
+    registered_name: sentibot_kvs
+    exception exit: {{undef,[{sentibot_kvs,terminate,[{undef,[{sentibot_kvs,handle_info,[{'$gen_call',{<0.266.0>,#Ref<0.0.1.215>},{get}},{state,#{happy => ":)",sad => ":("},#{}},infinity],[]},{gen_fsm,handle_msg,7,[{file,"gen_fsm.erl"},{line,451}]},{proc_lib,init_p_do_apply,3,[{file,"proc_lib.erl"},{line,247}]}]},{state,#{happy => ":)",sad => ":("},#{}},infinity],[]},{gen_fsm,terminate,7,[{file,"gen_fsm.erl"},{line,543}]},{proc_lib,init_p_do_apply,3,[{file,"proc_lib.erl"},{line,247}]}]},[{gen_fsm,terminate,7,[{file,"gen_fsm.erl"},{line,547}]},{proc_lib,init_p_do_apply,3,[{file,"proc_lib.erl"},{line,247}]}]}
+    ancestors: [sentibot_sup,<0.230.0>]
+    messages: []
+    links: [<0.262.0>]
+    dictionary: []
+    trap_exit: false
+    status: running
+    heap_size: 610
+    stack_size: 27
+    reductions: 221
+  neighbours:
+2017-06-14 01:35:16 =SUPERVISOR REPORT====
+     Supervisor: {local,sentibot_sup}
+     Context:    child_terminated
+     Reason:     {undef,[{sentibot_kvs,terminate,[{undef,[{sentibot_kvs,handle_info,[{'$gen_call',{<0.266.0>,#Ref<0.0.1.215>},{get}},{state,#{happy => ":)",sad => ":("},#{}},infinity],[]},{gen_fsm,handle_msg,7,[{file,"gen_fsm.erl"},{line,451}]},{proc_lib,init_p_do_apply,3,[{file,"proc_lib.erl"},{line,247}]}]},{state,#{happy => ":)",sad => ":("},#{}},infinity],[]},{gen_fsm,terminate,7,[{file,"gen_fsm.erl"},{line,543}]},{proc_lib,init_p_do_apply,3,[{file,"proc_lib.erl"},{line,247}]}]}
+     Offender:   [{pid,<0.265.0>},{id,sentibot_kvs},{mfargs,{sentibot_kvs,start_link,[]}},{restart_type,permanent},{shutdown,brutal_kill},{child_type,worker}]
+
