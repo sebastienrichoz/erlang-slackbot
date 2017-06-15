@@ -18,3 +18,9 @@ Rename `priv/slack.config_example` into `priv/slack.config` and set your bot's t
     Eshell V8.3  (abort with ^G)
     1> application:start(sentibot).
     2> observer:start().  // Tool to observe supervision tree
+
+## Group member
+    Combremont Rosanne
+    Djomo Patrick
+    Ponce Kevin
+    Richoz Sébastien
