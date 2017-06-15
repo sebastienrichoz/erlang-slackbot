@@ -62,7 +62,7 @@ parse(message, EventMap, Name) ->
     ["i", "am", Feeling | _] -> add_feeling(EventMap, Feeling), Name;
     [Name, "sentiments" | _] -> get_feelings(EventMap), Name;
     [Name, "help" | _] -> send_help(EventMap, Name), Name;
-    [Name, "rename", NewName] -> lists:flatten(NewName, ":");
+    [Name, "rename", NewName] -> send_rename(EventMap, Name, NewName), lists:flatten(NewName, ":");
     _Other -> Name
   end.
 
@@ -97,6 +97,11 @@ send_help(EventMap, Name) ->
   Msg = format_help(Feelings, Name),
   sentibot_slack:send(Msg, Channel).
 
+send_rename(EventMap, Name, NewName) ->
+  Channel = get_channel(EventMap),
+  Msg = format_rename(Name, NewName),
+  sentibot_slack:send(Msg, Channel).
+
 % Format message 'I am happy' :
 % John: I am happy => @john is :simple_smile:
 format(UserKey, Emoji) ->
@@ -122,3 +127,6 @@ format_help(Feelings, BotName) ->
   All = lists:flatten(["`", BotName, " sentiments` : all feelings of this channel.\n"]),
   Rename = lists:flatten(["`", BotName, " rename newname` : Rename _", BotName, "_ into _newname:_.\n"]),
   lists:flatten([Intro, Help, Add, Feeling, All, Rename]).
+
+format_rename(OldName, NewName) ->
+  lists:flatten(["_", OldName, "_ was successfully renamed into *", NewName, "* :ok_hand:"]).
