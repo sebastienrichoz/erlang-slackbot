@@ -10,7 +10,7 @@
 -behaviour(gen_server).
 
 -export([init/1, handle_call/3, handle_cast/2, handle_info/2, terminate/2, code_change/3]).
--export([start_link/0, put_user/3, get/2, get/1, is_member/2, get_feelings/1, put_feeling/3]).
+-export([start_link/0, put_user/3, get/2, get/1, is_member/2, get_feelings/1, put_feeling/3, clear/1]).
 
 -record(state, {defaultEmojiMap, emojiMap, userSentiMap}).
 
@@ -39,6 +39,10 @@ get(Channel) ->
 % get feelings defined in the specified channel
 get_feelings(Channel) ->
   gen_server:call(?MODULE, {feelings, Channel}).
+
+% clear feelings
+clear(Channel) ->
+  gen_server:call(?MODULE, {clear, Channel}).
 
 % Return true if the specified Feeling exists, false otherwise
 is_member(Feeling, Channel) ->
@@ -73,6 +77,12 @@ handle_call({get, Channel}, _From, State) ->
 handle_call({get_emoji, Feeling, Channel}, _From, State) ->
   Data = kvs_get_emoji(Feeling, Channel, State#state.emojiMap, State#state.defaultEmojiMap),
   {reply, Data, State};
+
+% clear feelings
+% todo
+handle_call({clear, Channel}, _From, State) ->
+  kvs_clear(Channel),
+  {noreply, State};
 
 handle_call({member, Feeling, Channel}, _From, State) ->
   Data = kvs_member(Feeling, Channel, State#state.emojiMap, State#state.defaultEmojiMap),
@@ -150,6 +160,11 @@ kvs_get_emoji(Key, Channel, EmojiMap, DefaultEmojiMap) ->
     error ->
       maps:find(Key, DefaultEmojiMap)
   end.
+
+% clear feelings
+% todo
+kvs_clear() ->
+  ok.
 
 kvs_member(Feeling, Channel, EmojiMap, DefaultEmojiMap) ->
   case maps:find(Channel, EmojiMap) of

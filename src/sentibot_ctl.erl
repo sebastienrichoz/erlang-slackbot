@@ -61,6 +61,7 @@ parse(message, EventMap, Name) ->
   case Chunks of
     ["i", "am", Feeling | _] -> put_feeling(EventMap, Feeling), Name;
     [Name, "sentiments" | _] -> get_feelings(EventMap), Name;
+    [Name, "clear" | _] -> clear_feelings(EventMap, Name);
     [Name, "help" | _] -> send_help(EventMap, Name), Name;
     [Name, "rename", NewName] -> send_rename(EventMap, Name, NewName), lists:flatten(NewName, ":");
     [Name, "add", Ascii, NewFeeling] -> new_feeling(EventMap, NewFeeling, Ascii), Name;
@@ -87,6 +88,13 @@ get_feelings(EventMap) ->
     _ -> Msg = lists:flatten(format(Feelings))
   end,
   sentibot_slack:send(Msg, ChannelId).
+
+% clear feelings
+clear_feelings(EventMap, Name) ->
+  Channel = get_channel(EventMap),
+  sentibot_kvs:clear(Channel),
+  Msg = format_clear(Name),
+  sentibot_slack:send(Msg, Channel).
 
 get_channel(EventMap) ->
   {ok, ChannelBin} = maps:find(<<"channel">>, EventMap),
@@ -145,6 +153,10 @@ format_help(Feelings, BotName) ->
 
 format_rename(OldName, NewName) ->
   lists:flatten(["_", OldName, "_ was successfully renamed into *", NewName, "* :ok_hand:"]).
+
+% clear feelings
+format_clear(BotName) ->
+  lists:flatten(["_", "Feelings have successfully been removed from *", BotName, "* :ok_hand:"]).
 
 format_new_feeling(correct_format, Feeling, Ascii) ->
   lists:flatten(["New Feeling `", Feeling, "` with emoji ", Ascii, " successfully added!"]);
