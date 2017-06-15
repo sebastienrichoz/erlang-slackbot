@@ -74,7 +74,7 @@ parse(message, EventMap, Token) ->
   Chunks = string:tokens(String, " "),
   case Chunks of
     ["i", "am", Feeling | _] -> addFeeling(EventMap, Feeling, Token);
-    ["sentibot:", "sentiments" | _] -> getFeelings(EventMap);
+    ["sentibot:", "sentiments" | _] -> getFeelings(EventMap, Token);
     _Other -> ok
   end.
 
@@ -97,8 +97,22 @@ get_user(UserIdBin, Token) ->
   {ok, NameBin} = dict:find(<<"name">>, Dict),
   binary:bin_to_list(NameBin).
 
-getFeelings(EventMap) ->
-  ok.
+getFeelings(EventMap, Token) ->
+  {ok, ChannelIdBin} = maps:find(<<"channel">>, EventMap),
+  Feelings = sentibot_kvs:get(),
+  ChannelId = binary:bin_to_list(ChannelIdBin),
+  Msg = format(Feelings),
+  io:fwrite("Feelings: ~p~n", [lists:flatten(Msg)]),
+  slacker_chat:post_message(Token, ChannelId, lists:flatten(Msg), []).
 
 format(User, Emoji) ->
   string:concat(string:concat(User, " is "), Emoji).
+
+format([{User, Feeling} | T]) ->
+  TupleSep = " is ",
+  format_r(T, TupleSep, ", ", [User, TupleSep, Feeling, "."]);
+format([]) -> ["<empty>, format is: 'I am <sentiment>'"].
+
+format_r([{User, Feeling} | T], TupleSep, ListSep, Acc) ->
+  format_r(T, TupleSep, ListSep, [User, TupleSep, Feeling, ListSep | Acc]);
+format_r([], _, _, Acc) -> Acc.
