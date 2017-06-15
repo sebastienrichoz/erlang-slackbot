@@ -19,6 +19,8 @@ Rename `priv/slack.config_example` into `priv/slack.config` and set your bot's t
     1> application:start(sentibot).
     2> observer:start().  // Tool to observe supervision tree
 
+## Operation
+![System architecture](/doc/architecture.png)   
 ## Command
 `sentibot: help` display help.    
 `sentibot: add <emoji> <feeling>` Add a new feeling. Example: `sentibot: add :scream: scared`.     
