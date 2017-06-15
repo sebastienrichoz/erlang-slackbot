@@ -10,7 +10,7 @@
 -behaviour(gen_server).
 
 -export([init/1, handle_call/3, handle_cast/2, handle_info/2, terminate/2, code_change/3]).
--export([start_link/0, put/3, get/2, get/1, is_member/1, get_sentiments/0]).
+-export([start_link/0, put/3, get/2, get/1, is_member/1, get_sentiments/0, clear/1]).
 
 -record(state, {emojiMap, userSentiMap}).
 
@@ -34,6 +34,10 @@ get(User, Channel) ->
 % get all user-sentiment from the specified Channel
 get(Channel) ->
   gen_server:call(?MODULE, {get, Channel}).
+
+% clear feelings
+clear(Channel) ->
+  gen_server:call(?MODULE, {clear, Channel}).
 
 get_sentiments() ->
   gen_server:call(?MODULE, {sentiments}).
@@ -63,6 +67,12 @@ handle_call({sentiments}, _From, State) ->
 handle_call({get, Channel}, _From, State) ->
   Data = kvs_get(Channel, State#state.userSentiMap),
   {reply, Data, State};
+
+% clear feelings
+% todo
+handle_call({clear, Channel}, _From, State) ->
+  kvs_clear(),
+  {noreply, State}.
 
 handle_call({member, Feeling}, _From, State) ->
   Data = kvs_member(Feeling, State#state.emojiMap),
@@ -120,6 +130,12 @@ kvs_get(Channel, UserSentiMap) ->
     {ok, Map} -> maps:to_list(Map);
     error -> empty
   end.
+
+% clear feelings
+% todo
+kvs_clear() ->
+  ok.
+
 
 kvs_get_emoji(Key, Map) ->
   maps:find(Key, Map).
