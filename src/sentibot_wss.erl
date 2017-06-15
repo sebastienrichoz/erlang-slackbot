@@ -24,7 +24,6 @@
 
 start_link() ->
   Socket = sentibot_slack:get_socket(),
-  io:format("start_link sentibot_wss ~p~n", [Socket]),
   websocket_client:start_link(Socket, ?MODULE, []).
 
 %%====================================================================
@@ -38,6 +37,7 @@ init([], _ConnState) ->
 websocket_handle({text, Msg}, _ConnState, State) ->
   EventMap = jsone:decode(Msg),
   MessageType = maps:find(<<"type">>, EventMap),
+  io:format("WSS:  ~p~n", [EventMap]),
   case MessageType of
     {ok, <<"message">>} -> sentibot_slack:process(message, EventMap);
     _ -> ok

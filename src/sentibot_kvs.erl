@@ -10,7 +10,7 @@
 -behaviour(gen_server).
 
 -export([init/1, handle_call/3, handle_cast/2, handle_info/2, terminate/2, code_change/3]).
--export([start_link/0, put/2, get/1, get/0, is_member/1]).
+-export([start_link/0, put/3, get/2, get/1, is_member/1]).
 
 -record(state, {emojiMap, userSentiMap}).
 
@@ -20,18 +20,22 @@
 %%====================================================================
 
 % -spec put(User, Sentiment) -> #{User => Sentiment}.
-put(Key, Value) ->
-  {state, EmojiMap, _} = gen_server:call(?MODULE, {put, Key, Value}),
+% insert or update user's sentiment for the specified channel
+put(Key, Value, Channel) ->
+  {state, EmojiMap, _} = gen_server:call(?MODULE, {put, Key, Value, Channel}),
   kvs_get_emoji(Value, EmojiMap).
 
 % -spec get(User) -> AsciiSentiment.
-get(Key) ->
-  gen_server:call(?MODULE, {get, Key}).
+% get user emoji from the specified Channel
+get(User, Channel) ->
+  gen_server:call(?MODULE, {get, User, Channel}).
 
-% -spec get() -> [{User, Sentiment}].
-get() ->
-  gen_server:call(?MODULE, {get}).
+% -spec get(Channel) -> [{User, Sentiment}].
+% get all user-sentiment from the specified Channel
+get(Channel) ->
+  gen_server:call(?MODULE, {get, Channel}).
 
+% Return true if the spexified Feeling exists, false otherwise
 is_member(Feeling) ->
   gen_server:call(?MODULE, {member, Feeling}).
 
@@ -46,24 +50,25 @@ init([]) ->
   % TODO sentiments -> sqlite db ?
   EmojiMap = #{"happy" => ":simple_smile:", "sad" => ":cry:", "tired" => ":tired_face:", "sleeping" => ":sleeping:",
     "strong" => ":muscle:"},
-  UserSentiMap = #{}, % alice => happy, ...
+  UserSentiMap = #{}, % {channelID1 => #{alice => happy, ...}, ...}
   io:fwrite("init sentibot_kvs.~n", []),
   {ok, #state{emojiMap = EmojiMap, userSentiMap = UserSentiMap}}.
 
-handle_call({get}, _From, State) ->
-  Data = kvs_get(State#state.userSentiMap),
+handle_call({get, Channel}, _From, State) ->
+  Data = kvs_get(State#state.userSentiMap, Channel),
   {reply, Data, State};
 
 handle_call({member, Feeling}, _From, State) ->
   Data = kvs_member(Feeling, State#state.emojiMap),
   {reply, Data, State};
 
-handle_call({get, Key}, _From, State) ->
-  Data = kvs_get(Key, State#state.userSentiMap, State#state.emojiMap),
+handle_call({get, Key, Channel}, _From, State) ->
+  Data = kvs_get(Key, Channel, State#state.userSentiMap, State#state.emojiMap),
   {reply, Data, State};
 
-handle_call({put, Key, Value}, _From, State) ->
-  NewMap = kvs_put(Key, Value, State#state.userSentiMap),
+handle_call({put, Key, Value, Channel}, _From, State) ->
+  NewMap = kvs_put(Key, Value, Channel, State#state.userSentiMap),
+  io:fwrite("NewMap: ~p~n", [NewMap]),
   Reply = State#state{userSentiMap = NewMap},
   {reply, Reply, Reply};
 
@@ -86,18 +91,30 @@ code_change(_OldVsn, State, _Extra) ->
 %%====================================================================
 %% Internal functions
 %%====================================================================
-kvs_get(Key, UserSentiMap, EmojiMap) ->
-  Value = maps:find(Key, UserSentiMap),
-  case Value of
-    {ok, Sentiment} -> kvs_get_emoji(Sentiment, EmojiMap);
+kvs_get(Key, Channel, UserSentiMap, EmojiMap) ->
+  case maps:find(Channel, UserSentiMap) of
+    {ok, Map} ->
+      case maps:find(Key, Map) of
+        {ok, Sentiment} -> kvs_get_emoji(Sentiment, EmojiMap);
+        error -> error
+      end;
     error -> error
   end.
 
-kvs_put(Key, Value, UserSentiMap) ->
-  maps:put(Key, Value, UserSentiMap).
+kvs_put(Key, Value, Channel, UserSentiMap) ->
+  case maps:find(Channel, UserSentiMap) of
+    {ok, Map} ->
+      Map2 = maps:put(Key, Value, Map),
+      maps:put(Channel, Map2, UserSentiMap);
+    error ->
+      maps:put(Channel, #{Key => Value}, UserSentiMap)
+  end.
 
-kvs_get(UserSentiMap) ->
-  maps:to_list(UserSentiMap).
+kvs_get(UserSentiMap, Channel) ->
+  case maps:find(Channel, UserSentiMap) of
+    {ok, Map} -> maps:to_list(Map);
+    error -> error
+  end.
 
 kvs_get_emoji(Key, Map) ->
   maps:find(Key, Map).

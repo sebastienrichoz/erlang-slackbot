@@ -17,7 +17,7 @@
 %%====================================================================
 %% API. Defines the methods available
 %%====================================================================
-get_socket() -> % TODO Remove ?
+get_socket() -> % TODO Remove ? and call directly the module
   gen_server:call(?MODULE, {get_socket}).
 
 process(message, EventMap) -> % TODO remove ? and call directly the module
@@ -82,10 +82,9 @@ addFeeling(EventMap, Feeling, Token) ->
   case sentibot_kvs:is_member(Feeling) of
     true ->
       {ok, UserIdBin} = maps:find(<<"user">>, EventMap),
-      {ok, ChannelIdBin} = maps:find(<<"channel">>, EventMap),
+      ChannelId = get_channel(EventMap),
       User = get_user(UserIdBin, Token),
-      {_, Emoji} = sentibot_kvs:put(User, Feeling),
-      ChannelId = binary:bin_to_list(ChannelIdBin),
+      {_, Emoji} = sentibot_kvs:put(User, Feeling, ChannelId),
       slacker_chat:post_message(Token, ChannelId, format(User, Emoji), []);
     false -> ok
   end.
@@ -98,12 +97,14 @@ get_user(UserIdBin, Token) ->
   binary:bin_to_list(NameBin).
 
 getFeelings(EventMap, Token) ->
-  {ok, ChannelIdBin} = maps:find(<<"channel">>, EventMap),
-  Feelings = sentibot_kvs:get(),
-  ChannelId = binary:bin_to_list(ChannelIdBin),
+  ChannelId = get_channel(EventMap),
+  Feelings = sentibot_kvs:get(ChannelId),
   Msg = format(Feelings),
-  io:fwrite("Feelings: ~p~n", [lists:flatten(Msg)]),
   slacker_chat:post_message(Token, ChannelId, lists:flatten(Msg), []).
+
+get_channel(EventMap) ->
+  {ok, ChannelBin} = maps:find(<<"channel">>, EventMap),
+  binary:bin_to_list(ChannelBin).
 
 format(User, Emoji) ->
   string:concat(string:concat(User, " is "), Emoji).
