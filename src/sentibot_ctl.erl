@@ -82,7 +82,7 @@ get_feelings(EventMap) ->
   ChannelId = get_channel(EventMap),
   Feelings = sentibot_kvs:get(ChannelId),
   case Feelings of
-    empty -> Msg = "Damn ! It looks like nobody feels anything...";
+    empty -> Msg = "Damn ! It looks like nobody feels anything... :thinking_face:";
     _ -> Msg = lists:flatten(format(Feelings))
   end,
   sentibot_slack:send(Msg, ChannelId).
@@ -115,9 +115,10 @@ format_r([], _, _, Acc) -> Acc.
 
 % Format message 'botname: help' with markdown syntax.
 format_help(Feelings, BotName) ->
-  Intro = lists:flatten(["*Hi !* '", BotName, "' analyses users feelings. Here are the available commands:\n\n"]),
+  Intro = lists:flatten([":hugging_face: *Hi !* '", BotName, "' analyses users feelings. Here are the available commands:\n\n"]),
   Help = lists:flatten(["`", BotName, " help` : display this help.\n"]),
+  Add = lists:flatten(["`", BotName, " add emoji feeling` : Add a new feeling. Example: `", BotName, " add :scream: scared`.\n"]),
   Feeling = lists:flatten(["`I am <S>, where <S> := ", lists:flatten(lists:join(" | ", Feelings)), "` : save your feeling.\n"]),
   All = lists:flatten(["`", BotName, " sentiments` : all feelings of this channel.\n"]),
   Rename = lists:flatten(["`", BotName, " rename newname` : Rename _", BotName, "_ into _newname:_.\n"]),
-  lists:flatten([Intro, Help, Feeling, All, Rename]).
+  lists:flatten([Intro, Help, Add, Feeling, All, Rename]).
