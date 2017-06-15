@@ -33,13 +33,13 @@ init([], _ConnState) ->
   io:format("init sentibot_wss~n", []),
   {ok, 0}.
 
-% Extract message and process it
+% Extract message and give it to controller to process it
 websocket_handle({text, Msg}, _ConnState, State) ->
   EventMap = jsone:decode(Msg),
   MessageType = maps:find(<<"type">>, EventMap),
   io:format("WSS:  ~p~n", [EventMap]),
   case MessageType of
-    {ok, <<"message">>} -> sentibot_slack:process(message, EventMap);
+    {ok, <<"message">>} -> sentibot_ctl:process(message, EventMap);
     _ -> ok
   end,
   {ok, State+1};
@@ -50,8 +50,7 @@ websocket_info(start, _ConnState, State) ->
   {ok, State}.
 
 websocket_terminate(Reason, _ConnState, State) ->
-  io:format("Websocket closed in state ~p wih reason ~p~n",
-    [State, Reason]),
+  io:format("Websocket closed in state ~p wih reason ~p~n", [State, Reason]),
   ok.
 
 %%====================================================================
