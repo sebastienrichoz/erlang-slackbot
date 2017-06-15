@@ -10,7 +10,7 @@
 -behaviour(gen_server).
 
 -export([init/1, handle_call/3, handle_cast/2, handle_info/2, terminate/2, code_change/3]).
--export([start_link/0, put/3, get/2, get/1, is_member/1]).
+-export([start_link/0, put/3, get/2, get/1, is_member/1, get_sentiments/0]).
 
 -record(state, {emojiMap, userSentiMap}).
 
@@ -35,6 +35,9 @@ get(User, Channel) ->
 get(Channel) ->
   gen_server:call(?MODULE, {get, Channel}).
 
+get_sentiments() ->
+  gen_server:call(?MODULE, {sentiments}).
+
 % Return true if the spexified Feeling exists, false otherwise
 is_member(Feeling) ->
   gen_server:call(?MODULE, {member, Feeling}).
@@ -53,6 +56,10 @@ init([]) ->
   UserSentiMap = #{}, % {channelID1 => #{alice => happy, ...}, ...}
   io:fwrite("init sentibot_kvs.~n", []),
   {ok, #state{emojiMap = EmojiMap, userSentiMap = UserSentiMap}}.
+
+handle_call({sentiments}, _From, State) ->
+  Data = kvs_get_sentiments(State#state.emojiMap),
+  {reply, Data, State};
 
 handle_call({get, Channel}, _From, State) ->
   Data = kvs_get(State#state.userSentiMap, Channel),
@@ -77,10 +84,10 @@ handle_call(_Request, _From, State) ->
   {reply, Reply, State}.
 
 handle_cast(_Request, State) ->
-  {reply, State}.
+  {noreply, State}.
 
 handle_info(_Info, State) ->
-  {reply, State}.
+  {noreply, State}.
 
 terminate(_Reason, _State) ->
   ok.
@@ -121,3 +128,6 @@ kvs_get_emoji(Key, Map) ->
 
 kvs_member(Feeling, Map) ->
   maps:is_key(Feeling, Map).
+
+kvs_get_sentiments(Map) ->
+  maps:keys(Map).

@@ -79,7 +79,4 @@ fabric.properties
 # End of https://www.gitignore.io/api/erlang,intellij
 
 priv/slack.config
-log/*.log
-log/console.log.0
-log/crash.log.0
-log/error.log.0
+log/

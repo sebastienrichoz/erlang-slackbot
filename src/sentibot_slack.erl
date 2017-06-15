@@ -61,6 +61,9 @@ code_change(_OldVsn, State, _Extra) ->
 %%====================================================================
 %% Internal functions
 %%====================================================================
+
+% TODO : another module to separate slacker_* calls
+
 % Open a connection to RTM Slack API and return the websocket
 connect_rtm(Token) ->
   {ok, _Status, _Headers, Body} = slacker_rtm:connect(Token),
@@ -73,12 +76,13 @@ parse(message, EventMap, Token) ->
   String = string:to_lower(binary:bin_to_list(Text)),
   Chunks = string:tokens(String, " "),
   case Chunks of
-    ["i", "am", Feeling | _] -> addFeeling(EventMap, Feeling, Token);
-    ["sentibot:", "sentiments" | _] -> getFeelings(EventMap, Token);
+    ["i", "am", Feeling | _] -> add_feeling(EventMap, Feeling, Token);
+    ["sentibot:", "sentiments" | _] -> get_feelings(EventMap, Token);
+    ["sentibot:", "help" | _] -> send_help(EventMap, Token);
     _Other -> ok
   end.
 
-addFeeling(EventMap, Feeling, Token) ->
+add_feeling(EventMap, Feeling, Token) ->
   case sentibot_kvs:is_member(Feeling) of
     true ->
       {ok, UserIdBin} = maps:find(<<"user">>, EventMap),
@@ -96,7 +100,7 @@ get_user(UserIdBin, Token) ->
   {ok, NameBin} = dict:find(<<"name">>, Dict),
   binary:bin_to_list(NameBin).
 
-getFeelings(EventMap, Token) ->
+get_feelings(EventMap, Token) ->
   ChannelId = get_channel(EventMap),
   Feelings = sentibot_kvs:get(ChannelId),
   Msg = format(Feelings),
@@ -117,3 +121,10 @@ format([]) -> ["<empty>, format is: 'I am <sentiment>'"].
 format_r([{User, Feeling} | T], TupleSep, ListSep, Acc) ->
   format_r(T, TupleSep, ListSep, [User, TupleSep, Feeling, ListSep | Acc]);
 format_r([], _, _, Acc) -> Acc.
+
+send_help(EventMap, Token) ->
+  Channel = get_channel(EventMap),
+  Feelings = sentibot_kvs:get_sentiments(),
+  Msg = string:concat("I am <S>, where <S> := ", lists:flatten(lists:join(" | ", Feelings))),
+  slacker_chat:post_message(Token, Channel, Msg, []).
+
