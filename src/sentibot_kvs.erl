@@ -50,11 +50,10 @@ start_link() ->
 %%====================================================================
 init([]) ->
   %% Set the map of sentiments, and the map of user sentiments.
-  % TODO sentiments -> sqlite db ?
-  EmojiMap = #{"happy" => ":simple_smile:", "sad" => ":cry:", "tired" => ":tired_face:", "sleeping" => ":sleeping:",
+  EmojiMap = #{
+    "happy" => ":simple_smile:", "sad" => ":cry:", "tired" => ":tired_face:", "sleeping" => ":sleeping:",
     "strong" => ":muscle:"},
-  UserSentiMap = #{}, % {channelID1 => #{alice => happy, ...}, ...}
-  io:fwrite("init sentibot_kvs.~n", []),
+  UserSentiMap = #{}, % {channelID1 => #{"<@U024BE7LH|bob>" => {happy}, ...}, ...}
   {ok, #state{emojiMap = EmojiMap, userSentiMap = UserSentiMap}}.
 
 handle_call({sentiments}, _From, State) ->
@@ -62,7 +61,7 @@ handle_call({sentiments}, _From, State) ->
   {reply, Data, State};
 
 handle_call({get, Channel}, _From, State) ->
-  Data = kvs_get(State#state.userSentiMap, Channel),
+  Data = kvs_get(Channel, State#state.userSentiMap),
   {reply, Data, State};
 
 handle_call({member, Feeling}, _From, State) ->
@@ -75,7 +74,6 @@ handle_call({get, Key, Channel}, _From, State) ->
 
 handle_call({put, Key, Value, Channel}, _From, State) ->
   NewMap = kvs_put(Key, Value, Channel, State#state.userSentiMap),
-  io:fwrite("NewMap: ~p~n", [NewMap]),
   Reply = State#state{userSentiMap = NewMap},
   {reply, Reply, Reply};
 
@@ -117,10 +115,10 @@ kvs_put(Key, Value, Channel, UserSentiMap) ->
       maps:put(Channel, #{Key => Value}, UserSentiMap)
   end.
 
-kvs_get(UserSentiMap, Channel) ->
+kvs_get(Channel, UserSentiMap) ->
   case maps:find(Channel, UserSentiMap) of
     {ok, Map} -> maps:to_list(Map);
-    error -> error
+    error -> empty
   end.
 
 kvs_get_emoji(Key, Map) ->
