@@ -59,22 +59,23 @@ parse(message, EventMap, Name) ->
   String = string:to_lower(binary:bin_to_list(Text)),
   Chunks = string:tokens(String, " "),
   case Chunks of
-    ["i", "am", Feeling | _] -> add_feeling(EventMap, Feeling), Name;
+    ["i", "am", Feeling | _] -> put_feeling(EventMap, Feeling), Name;
     [Name, "sentiments" | _] -> get_feelings(EventMap), Name;
     [Name, "help" | _] -> send_help(EventMap, Name), Name;
     [Name, "rename", NewName] -> send_rename(EventMap, Name, NewName), lists:flatten(NewName, ":");
+    [Name, "add", Ascii, NewFeeling] -> new_feeling(EventMap, NewFeeling, Ascii), Name;
     _Other -> Name
   end.
 
-add_feeling(EventMap, Feeling) ->
-  case sentibot_kvs:is_member(Feeling) of
+put_feeling(EventMap, Feeling) ->
+  Channel = get_channel(EventMap),
+  case sentibot_kvs:is_member(Feeling, Channel) of
     true ->
       {ok, UserIdBin} = maps:find(<<"user">>, EventMap),
-      ChannelId = get_channel(EventMap),
       Username = sentibot_slack:get_username(UserIdBin),
       UserKey = lists:flatten(["<@", binary:bin_to_list(UserIdBin), "|", Username, ">"]),
-      {_, Emoji} = sentibot_kvs:put(UserKey, Feeling, ChannelId),
-      sentibot_slack:send(format(UserKey, Emoji), ChannelId);
+      Emoji = sentibot_kvs:put_user(UserKey, Feeling, Channel),
+      sentibot_slack:send(format(UserKey, Emoji), Channel);
     false -> ok
   end.
 
@@ -93,13 +94,27 @@ get_channel(EventMap) ->
 
 send_help(EventMap, Name) ->
   Channel = get_channel(EventMap),
-  Feelings = sentibot_kvs:get_sentiments(),
+  Feelings = sentibot_kvs:get_feelings(Channel),
   Msg = format_help(Feelings, Name),
   sentibot_slack:send(Msg, Channel).
 
 send_rename(EventMap, Name, NewName) ->
   Channel = get_channel(EventMap),
   Msg = format_rename(Name, NewName),
+  sentibot_slack:send(Msg, Channel).
+
+new_feeling(EventMap, NewFeeling, Ascii) ->
+  Channel = get_channel(EventMap),
+  [Head | _] = Ascii,
+  [End | _] = lists:reverse(Ascii),
+  io:fwrite("head tail ~p, ~p~n", [{Head, End}, {":", ":"}]),
+case {Head, End}  of
+    {58, 58} ->
+      sentibot_kvs:put_feeling(NewFeeling, Ascii, Channel),
+      Msg = format_new_feeling(correct_format, NewFeeling, Ascii);
+    _ ->
+      Msg = format_new_feeling(wrong_format, NewFeeling, Ascii)
+  end,
   sentibot_slack:send(Msg, Channel).
 
 % Format message 'I am happy' :
@@ -130,3 +145,8 @@ format_help(Feelings, BotName) ->
 
 format_rename(OldName, NewName) ->
   lists:flatten(["_", OldName, "_ was successfully renamed into *", NewName, "* :ok_hand:"]).
+
+format_new_feeling(correct_format, Feeling, Ascii) ->
+  lists:flatten(["New Feeling `", Feeling, "` with emoji ", Ascii, " successfully added!"]);
+format_new_feeling(wrong_format, Feeling, Ascii) ->
+  lists:flatten(["Could not add Feeling `", Feeling, "` with emoji ", Ascii, ". The format is wrong."]).

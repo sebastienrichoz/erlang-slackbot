@@ -77,7 +77,6 @@ code_change(_OldVsn, State, _Extra) ->
 % Open a connection to RTM Slack API and return the websocket
 connect_rtm(Token) ->
   {ok, _Status, _Headers, Body} = slacker_rtm:connect(Token),
-  % TODO check status -> error ?
   [_, {_URL, WSS} | _] = Body,
   binary_to_list(WSS).
 
