@@ -20,7 +20,7 @@ Rename `priv/slack.config_example` into `priv/slack.config` and set your bot's t
     2> observer:start().  // Tool to observe supervision tree
 
 ## Group members
-Combremont Rosanne
-Djomo Patrick
-Ponce Kevin
-Richoz Sébastien
+*Combremont Rosanne
+*Djomo Patrick
+*Ponce Kevin
+*Richoz Sébastien
