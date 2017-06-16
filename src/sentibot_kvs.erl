@@ -63,13 +63,10 @@ init([]) ->
 
 handle_call({feelings, Channel}, _From, State) ->
   Data = kvs_get_feelings(Channel, State#state.emojiMap, State#state.defaultEmojiMap),
-  io:fwrite("Data ~p~n", [Data]),
-
   {reply, Data, State};
 
 handle_call({put_feeling, Key, Value, Channel}, _From, State) ->
   NewMap = kvs_put_feeling(Key, Value, Channel, State#state.emojiMap),
-  io:fwrite("NewMAP ~p~n", [NewMap]),
   Reply = State#state{emojiMap = NewMap},
   {reply, Reply, Reply};
 

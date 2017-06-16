@@ -15,7 +15,6 @@
 %%====================================================================
 start(_StartType, _StartArgs) ->
     ok = lager:start(),
-    io:fwrite("Hello from sentibot_app!~n", []),
     sentibot_sup:start_link().
 
 %%--------------------------------------------------------------------

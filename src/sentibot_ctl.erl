@@ -76,7 +76,6 @@ put_feeling(EventMap, Feeling) ->
       Username = sentibot_slack:get_username(UserIdBin),
       UserKey = lists:flatten(["<@", binary:bin_to_list(UserIdBin), "|", Username, ">"]),
       {ok, Emoji} = sentibot_kvs:put_user(UserKey, Feeling, Channel),
-      io:fwrite("Emoji ~p~n", [Emoji]),
       sentibot_slack:send(format(UserKey, Emoji), Channel);
     false -> ok
   end.
@@ -104,7 +103,6 @@ get_channel(EventMap) ->
 send_help(EventMap, Name) ->
   Channel = get_channel(EventMap),
   Feelings = sentibot_kvs:get_feelings(Channel),
-  io:fwrite("Feelings ~p~n", [Feelings]),
   Msg = format_help(Feelings, Name),
   sentibot_slack:send(Msg, Channel).
 

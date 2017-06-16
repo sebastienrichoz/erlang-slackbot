@@ -29,7 +29,6 @@ start_link() ->
 
 %% Child :: {Id,StartFunc,Restart,Shutdown,Type,Modules}
 init([]) ->
-  io:fwrite("Hello from sentibot_sup! Initiate children modules...~n", []),
   SupFlags = #{strategy => one_for_one, intensity => 1, period => 5}, % TODO check that
   ChildSpecs = [
     ?CHILD(sentibot_kvs, worker),
