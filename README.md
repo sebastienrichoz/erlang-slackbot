@@ -58,7 +58,7 @@ At initialization, the application creates the following supervision tree.
 
 - kvs (`src/sentibot_kvs.erl`) stands for key-value store. It stores the association of user => feeling, and feeling => ascii_representation using hard-coded maps.
 - ctl (`src/sentibot_ctl.erl`) is the controller of the app. It contains the business logic and is responsible to orchestrate the application.
-- slack (`src/sentibot_slack.erl`) is a module using [Erlang slacker plugin](https://github.com/julienXX/slacker) to communicate with the [Real Time mMssaging API](https://api.slack.com/rtm) of Slack.
+- slack (`src/sentibot_slack.erl`) is a module using [Erlang slacker plugin](https://github.com/julienXX/slacker) to communicate with the [Slacker REST API](https://api.slack.com/web) of Slack.
 - wss (`src/sentibot_wss.erl`) is a websocket catching all the incoming messages from channels where the bot is invited to.
 
 ## Sequence diagrams
