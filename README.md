@@ -81,10 +81,10 @@ The sentiments could be stored in a persistent database such as sqlite to keep h
 
 ## Dependencies
 
-- Slacker: github.com/julienXX/slacker.git
-- websocket_client: github.com/jeremyong/websocket_client
-- lager: github.com/erlang-lager/lager
-- jsone: github.com/sile/jsone
+- Slacker: https://github.com/julienXX/slacker.git
+- websocket_client: https://github.com/jeremyong/websocket_client
+- lager: https://github.com/erlang-lager/lager
+- jsone: https://github.com/sile/jsone
 
 ## Authors
 * Combremont Rosanne
