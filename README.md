@@ -38,6 +38,12 @@ After successfully build the application, run these commands to start the Erlang
     Eshell V8.3  (abort with ^G)
     1> application:start(sentibot).
     2> observer:start().  // Tool to observe supervision tree. Not necessary.
+    
+### Alternative Build & Run with Intellij
+
+Open the project with Intellij (version used: 2017.1.4) and make the `Rebar -> Path` in `Preferences -> Other Settings -> Erlang External Tools` point to your `rebar3` local installation.
+
+After that you'll be able to compile the project (`rebar compile`) and run it (`rebar auto`) with the configurations provided. Once the project is run, type the command `application:start(sentibot).` in Erlang shell (should appear in Intellij).
 
 ## Bot Commands
 
