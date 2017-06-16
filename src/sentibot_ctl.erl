@@ -63,8 +63,8 @@ parse(message, EventMap, Name) ->
     [Name, "sentiments" | _] -> get_feelings(EventMap), Name;
     [Name, "clear" | _] -> clear_feelings(EventMap, Name), Name;
     [Name, "help" | _] -> send_help(EventMap, Name), Name;
-    [Name, "rename", NewName] -> send_rename(EventMap, Name, NewName), lists:flatten(NewName, ":");
-    [Name, "add", Ascii, NewFeeling] -> new_feeling(EventMap, NewFeeling, Ascii), Name;
+    [Name, "rename", NewName | _] -> send_rename(EventMap, Name, NewName), lists:flatten(NewName, ":");
+    [Name, "add", Ascii, NewFeeling | _] -> new_feeling(EventMap, NewFeeling, Ascii), Name;
     _Other -> Name
   end.
 
