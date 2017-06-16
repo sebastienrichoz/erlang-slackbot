@@ -1,83 +1,325 @@
-2017-06-13 23:03:58.922 [info] <0.31.0> Application lager started on node nonode@nohost
-2017-06-13 23:03:58.922 [error] <0.256.0> Supervisor sentibot_sup had child sentibot_kvs started with sentibot_kvs:start_link() at undefined exit with reason {'EXIT',{undef,[{sentibot_kvs,start_link,[],[]},{supervisor,do_start_child,2,[{file,"supervisor.erl"},{line,365}]},{supervisor,start_children,3,[{file,"supervisor.erl"},{line,348}]},{supervisor,init_children,2,[{file,"supervisor.erl"},{line,314}]},{gen_server,init_it,6,[{file,"gen_server.erl"},{line,328}]},{proc_lib,init_p_do_apply,3,[{file,"proc_lib.erl"},{line,247}]}]}} in context start_error
-2017-06-13 23:03:58.922 [error] <0.223.0> CRASH REPORT Process <0.223.0> with 0 neighbours exited with reason: {{shutdown,{failed_to_start_child,sentibot_kvs,{'EXIT',{undef,[{sentibot_kvs,start_link,[],[]},{supervisor,do_start_child,2,[{file,"supervisor.erl"},{line,365}]},{supervisor,start_children,3,[{file,"supervisor.erl"},{line,348}]},{supervisor,init_children,2,[{file,"supervisor.erl"},{line,314}]},{gen_server,init_it,6,[{file,"gen_server.erl"},{line,328}]},{proc_lib,init_p_do_apply,3,[{file,"proc_lib.erl"},{line,247}]}]}}}},{sentibot_app,start,[normal,[]]}} in application_master:init/4 line 134
-2017-06-13 23:03:58.923 [info] <0.31.0> Application sentibot exited with reason: {{shutdown,{failed_to_start_child,sentibot_kvs,{'EXIT',{undef,[{sentibot_kvs,start_link,[],[]},{supervisor,do_start_child,2,[{file,"supervisor.erl"},{line,365}]},{supervisor,start_children,3,[{file,"supervisor.erl"},{line,348}]},{supervisor,init_children,2,[{file,"supervisor.erl"},{line,314}]},{gen_server,init_it,6,[{file,"gen_server.erl"},{line,328}]},{proc_lib,init_p_do_apply,3,[{file,"proc_lib.erl"},{line,247}]}]}}}},{sentibot_app,start,[normal,[]]}}
-2017-06-13 23:42:27.189 [info] <0.31.0> Application lager started on node nonode@nohost
-2017-06-13 23:42:27.202 [error] <0.257.0>@sentibot_kvs:init CRASH REPORT Process <0.257.0> with 0 neighbours exited with reason: call to undefined function sentibot_kvs:init([]) in gen_fsm:init_it/6 line 343
-2017-06-13 23:42:27.202 [error] <0.256.0>@sentibot_kvs:init Supervisor sentibot_sup had child sentibot_kvs started with sentibot_kvs:start_link() at undefined exit with reason call to undefined function sentibot_kvs:init([]) in context start_error
-2017-06-13 23:42:27.202 [error] <0.223.0> CRASH REPORT Process <0.223.0> with 0 neighbours exited with reason: {{shutdown,{failed_to_start_child,sentibot_kvs,{undef,[{sentibot_kvs,init,[[]],[]},{gen_fsm,init_it,6,[{file,"gen_fsm.erl"},{line,325}]},{proc_lib,init_p_do_apply,3,[{file,"proc_lib.erl"},{line,247}]}]}}},{sentibot_app,start,[normal,[]]}} in application_master:init/4 line 134
-2017-06-13 23:42:27.203 [info] <0.31.0> Application sentibot exited with reason: {{shutdown,{failed_to_start_child,sentibot_kvs,{undef,[{sentibot_kvs,init,[[]],[]},{gen_fsm,init_it,6,[{file,"gen_fsm.erl"},{line,325}]},{proc_lib,init_p_do_apply,3,[{file,"proc_lib.erl"},{line,247}]}]}}},{sentibot_app,start,[normal,[]]}}
-2017-06-13 23:43:23.195 [info] <0.31.0> Application sentibot started on node nonode@nohost
-2017-06-13 23:50:00.046 [info] <0.31.0> Application lager started on node nonode@nohost
-2017-06-13 23:50:00.053 [info] <0.31.0> Application sentibot started on node nonode@nohost
-2017-06-13 23:54:44.973 [info] <0.31.0> Application lager started on node nonode@nohost
-2017-06-13 23:54:44.980 [info] <0.31.0> Application sentibot started on node nonode@nohost
-2017-06-13 23:55:22.291 [info] <0.31.0> Application lager started on node nonode@nohost
-2017-06-13 23:55:22.297 [info] <0.31.0> Application sentibot started on node nonode@nohost
-2017-06-14 01:07:33.472 [info] <0.31.0> Application lager started on node nonode@nohost
-2017-06-14 01:07:33.477 [info] <0.31.0> Application sentibot started on node nonode@nohost
-2017-06-14 01:08:22.859 [error] <0.397.0>@gen_fsm:terminate:543 gen_fsm sentibot_kvs in state {state,#{happy => [58,41],sad => [58,40]},undefined} terminated with reason: call to undefined function sentibot_kvs:terminate/3 from gen_fsm:terminate/7 line 543
-2017-06-14 01:08:22.868 [error] <0.397.0>@sentibot_kvs:terminate CRASH REPORT Process sentibot_kvs with 0 neighbours exited with reason: call to undefined function sentibot_kvs:terminate({undef,[{sentibot_kvs,handle_info,[{'$gen_call',{<0.399.0>,#Ref<0.0.1.6305>},{put,"Alice",happy}},...],...},...]}, {state,#{happy => ":)",sad => ":("},undefined}, {state,undefined,#{}}) in gen_fsm:terminate/7 line 547
-2017-06-14 01:08:22.869 [error] <0.396.0>@sentibot_kvs:terminate Supervisor sentibot_sup had child sentibot_kvs started with sentibot_kvs:start_link() at <0.397.0> exit with reason call to undefined function sentibot_kvs:terminate({undef,[{sentibot_kvs,handle_info,[{'$gen_call',{<0.399.0>,#Ref<0.0.1.6305>},{put,"Alice",happy}},...],...},...]}, {state,#{happy => ":)",sad => ":("},undefined}, {state,undefined,#{}}) in context child_terminated
-2017-06-14 01:09:55.463 [error] <0.401.0>@gen_fsm:terminate:543 gen_fsm sentibot_kvs in state {state,#{happy => [58,41],sad => [58,40]},undefined} terminated with reason: call to undefined function sentibot_kvs:terminate/3 from gen_fsm:terminate/7 line 543
-2017-06-14 01:09:55.463 [error] <0.401.0>@sentibot_kvs:terminate CRASH REPORT Process sentibot_kvs with 0 neighbours exited with reason: call to undefined function sentibot_kvs:terminate({undef,[{sentibot_kvs,handle_info,[{'$gen_call',{<0.402.0>,#Ref<0.0.1.6315>},{put,"Alice",happy}},...],...},...]}, {state,#{happy => ":)",sad => ":("},undefined}, {state,undefined,#{}}) in gen_fsm:terminate/7 line 547
-2017-06-14 01:09:55.463 [error] <0.396.0>@sentibot_kvs:terminate Supervisor sentibot_sup had child sentibot_kvs started with sentibot_kvs:start_link() at <0.401.0> exit with reason call to undefined function sentibot_kvs:terminate({undef,[{sentibot_kvs,handle_info,[{'$gen_call',{<0.402.0>,#Ref<0.0.1.6315>},{put,"Alice",happy}},...],...},...]}, {state,#{happy => ":)",sad => ":("},undefined}, {state,undefined,#{}}) in context child_terminated
-2017-06-14 01:15:09.223 [info] <0.31.0> Application lager started on node nonode@nohost
-2017-06-14 01:15:09.229 [error] <0.263.0>@gen_fsm:init_it:347 CRASH REPORT Process sentibot_kvs with 0 neighbours exited with reason: bad return value: {ok,{state,#{happy => ":)",sad => ":("},#{}}} in gen_fsm:init_it/6 line 347
-2017-06-14 01:15:09.229 [error] <0.262.0> Supervisor sentibot_sup had child sentibot_kvs started with sentibot_kvs:start_link() at undefined exit with reason bad return value: {ok,{state,#{happy => ":)",sad => ":("},#{}}} in context start_error
-2017-06-14 01:15:09.229 [error] <0.229.0> CRASH REPORT Process <0.229.0> with 0 neighbours exited with reason: {{shutdown,{failed_to_start_child,sentibot_kvs,{bad_return_value,{ok,{state,#{happy => ":)",sad => ":("},#{}}}}}},{sentibot_app,start,[normal,[]]}} in application_master:init/4 line 134
-2017-06-14 01:15:09.229 [info] <0.31.0> Application sentibot exited with reason: {{shutdown,{failed_to_start_child,sentibot_kvs,{bad_return_value,{ok,{state,#{happy => ":)",sad => ":("},#{}}}}}},{sentibot_app,start,[normal,[]]}}
-2017-06-14 01:18:40.845 [info] <0.31.0> Application lager started on node nonode@nohost
-2017-06-14 01:18:40.850 [error] <0.257.0>@gen_fsm:init_it:347 CRASH REPORT Process sentibot_kvs with 0 neighbours exited with reason: bad return value: {ok,{state,#{happy => ":)",sad => ":("},#{}}} in gen_fsm:init_it/6 line 347
-2017-06-14 01:18:40.850 [error] <0.256.0> Supervisor sentibot_sup had child sentibot_kvs started with sentibot_kvs:start_link() at undefined exit with reason bad return value: {ok,{state,#{happy => ":)",sad => ":("},#{}}} in context start_error
-2017-06-14 01:18:40.850 [error] <0.223.0> CRASH REPORT Process <0.223.0> with 0 neighbours exited with reason: {{shutdown,{failed_to_start_child,sentibot_kvs,{bad_return_value,{ok,{state,#{happy => ":)",sad => ":("},#{}}}}}},{sentibot_app,start,[normal,[]]}} in application_master:init/4 line 134
-2017-06-14 01:18:40.851 [info] <0.31.0> Application sentibot exited with reason: {{shutdown,{failed_to_start_child,sentibot_kvs,{bad_return_value,{ok,{state,#{happy => ":)",sad => ":("},#{}}}}}},{sentibot_app,start,[normal,[]]}}
-2017-06-14 01:20:15.550 [info] <0.31.0> Application lager started on node nonode@nohost
-2017-06-14 01:20:15.557 [error] <0.263.0>@gen_fsm:init_it:347 CRASH REPORT Process sentibot_kvs with 0 neighbours exited with reason: bad return value: {ok,{#{happy => ":)",sad => ":("},#{}}} in gen_fsm:init_it/6 line 347
-2017-06-14 01:20:15.557 [error] <0.262.0> Supervisor sentibot_sup had child sentibot_kvs started with sentibot_kvs:start_link() at undefined exit with reason bad return value: {ok,{#{happy => ":)",sad => ":("},#{}}} in context start_error
-2017-06-14 01:20:15.558 [error] <0.229.0> CRASH REPORT Process <0.229.0> with 0 neighbours exited with reason: {{shutdown,{failed_to_start_child,sentibot_kvs,{bad_return_value,{ok,{#{happy => ":)",sad => ":("},#{}}}}}},{sentibot_app,start,[normal,[]]}} in application_master:init/4 line 134
-2017-06-14 01:20:15.558 [info] <0.31.0> Application sentibot exited with reason: {{shutdown,{failed_to_start_child,sentibot_kvs,{bad_return_value,{ok,{#{happy => ":)",sad => ":("},#{}}}}}},{sentibot_app,start,[normal,[]]}}
-2017-06-14 01:21:05.211 [info] <0.31.0> Application sentibot started on node nonode@nohost
-2017-06-14 01:22:38.403 [info] <0.31.0> Application lager started on node nonode@nohost
-2017-06-14 01:22:38.410 [info] <0.31.0> Application sentibot started on node nonode@nohost
-2017-06-14 01:24:23.433 [error] <0.263.0>@gen_fsm:terminate:543 gen_fsm sentibot_kvs in state {state,#{happy => [58,41],sad => [58,40]},#{}} terminated with reason: call to undefined function sentibot_kvs:terminate/3 from gen_fsm:terminate/7 line 543
-2017-06-14 01:24:23.449 [error] <0.263.0>@sentibot_kvs:terminate CRASH REPORT Process sentibot_kvs with 0 neighbours exited with reason: call to undefined function sentibot_kvs:terminate({undef,[{sentibot_kvs,handle_info,[{'$gen_call',{<0.226.0>,#Ref<0.0.1.212>},{put,"Alice",happy}},...],...},...]}, {state,#{happy => ":)",sad => ":("},#{}}, infinity) in gen_fsm:terminate/7 line 547
-2017-06-14 01:24:23.449 [error] <0.262.0>@sentibot_kvs:terminate Supervisor sentibot_sup had child sentibot_kvs started with sentibot_kvs:start_link() at <0.263.0> exit with reason call to undefined function sentibot_kvs:terminate({undef,[{sentibot_kvs,handle_info,[{'$gen_call',{<0.226.0>,#Ref<0.0.1.212>},{put,"Alice",happy}},...],...},...]}, {state,#{happy => ":)",sad => ":("},#{}}, infinity) in context child_terminated
-2017-06-14 01:25:41.952 [info] <0.31.0> Application lager started on node nonode@nohost
-2017-06-14 01:25:41.957 [info] <0.31.0> Application sentibot started on node nonode@nohost
-2017-06-14 01:25:44.072 [error] <0.257.0>@gen_fsm:terminate:543 gen_fsm sentibot_kvs in state {state,#{happy => [58,41],sad => [58,40]},#{}} terminated with reason: call to undefined function sentibot_kvs:terminate/3 from gen_fsm:terminate/7 line 543
-2017-06-14 01:25:44.091 [error] <0.257.0>@sentibot_kvs:terminate CRASH REPORT Process sentibot_kvs with 0 neighbours exited with reason: call to undefined function sentibot_kvs:terminate({undef,[{sentibot_kvs,handle_info,[{'$gen_call',{<0.220.0>,#Ref<0.0.3.3894>},{put,"Alice",happy}},...],...},...]}, {state,#{happy => ":)",sad => ":("},#{}}, infinity) in gen_fsm:terminate/7 line 547
-2017-06-14 01:25:44.091 [error] <0.256.0>@sentibot_kvs:terminate Supervisor sentibot_sup had child sentibot_kvs started with sentibot_kvs:start_link() at <0.257.0> exit with reason call to undefined function sentibot_kvs:terminate({undef,[{sentibot_kvs,handle_info,[{'$gen_call',{<0.220.0>,#Ref<0.0.3.3894>},{put,"Alice",happy}},...],...},...]}, {state,#{happy => ":)",sad => ":("},#{}}, infinity) in context child_terminated
-2017-06-14 01:30:33.266 [error] <0.259.0>@gen_fsm:handle_msg:451 gen_fsm sentibot_kvs in state {state,#{happy => [58,41],sad => [58,40]},#{}} terminated with reason: call to undefined function sentibot_kvs:handle_info/3 from gen_fsm:handle_msg/7 line 451
-2017-06-14 01:30:33.266 [error] <0.259.0>@sentibot_kvs:handle_info CRASH REPORT Process sentibot_kvs with 0 neighbours exited with reason: call to undefined function sentibot_kvs:handle_info({'$gen_call',{<0.260.0>,#Ref<0.0.3.7224>},{get}}, {state,#{happy => ":)",sad => ":("},#{}}, infinity) in gen_fsm:terminate/7 line 559
-2017-06-14 01:30:33.266 [error] <0.256.0>@sentibot_kvs:handle_info Supervisor sentibot_sup had child sentibot_kvs started with sentibot_kvs:start_link() at <0.259.0> exit with reason call to undefined function sentibot_kvs:handle_info({'$gen_call',{<0.260.0>,#Ref<0.0.3.7224>},{get}}, {state,#{happy => ":)",sad => ":("},#{}}, infinity) in context child_terminated
-2017-06-14 01:33:30.865 [info] <0.31.0> Application lager started on node nonode@nohost
-2017-06-14 01:33:30.872 [info] <0.31.0> Application sentibot started on node nonode@nohost
-2017-06-14 01:33:33.678 [error] <0.263.0>@gen_fsm:terminate:543 gen_fsm sentibot_kvs in state {state,#{happy => [58,41],sad => [58,40]},#{}} terminated with reason: call to undefined function sentibot_kvs:terminate/3 from gen_fsm:terminate/7 line 543
-2017-06-14 01:33:33.689 [error] <0.263.0>@sentibot_kvs:terminate CRASH REPORT Process sentibot_kvs with 0 neighbours exited with reason: call to undefined function sentibot_kvs:terminate({undef,[{sentibot_kvs,handle_info,[{'$gen_call',{<0.226.0>,#Ref<0.0.1.200>},{put,"Alice",happy}},...],...},...]}, {state,#{happy => ":)",sad => ":("},#{}}, infinity) in gen_fsm:terminate/7 line 547
-2017-06-14 01:33:33.693 [error] <0.262.0>@sentibot_kvs:terminate Supervisor sentibot_sup had child sentibot_kvs started with sentibot_kvs:start_link() at <0.263.0> exit with reason call to undefined function sentibot_kvs:terminate({undef,[{sentibot_kvs,handle_info,[{'$gen_call',{<0.226.0>,#Ref<0.0.1.200>},{put,"Alice",happy}},...],...},...]}, {state,#{happy => ":)",sad => ":("},#{}}, infinity) in context child_terminated
-2017-06-14 01:35:16.944 [error] <0.265.0>@gen_fsm:terminate:543 gen_fsm sentibot_kvs in state {state,#{happy => [58,41],sad => [58,40]},#{}} terminated with reason: call to undefined function sentibot_kvs:terminate/3 from gen_fsm:terminate/7 line 543
-2017-06-14 01:35:16.944 [error] <0.265.0>@sentibot_kvs:terminate CRASH REPORT Process sentibot_kvs with 0 neighbours exited with reason: call to undefined function sentibot_kvs:terminate({undef,[{sentibot_kvs,handle_info,[{'$gen_call',{<0.266.0>,#Ref<0.0.1.215>},{get}},{state,#{happy => ...,...},...},...],...},...]}, {state,#{happy => ":)",sad => ":("},#{}}, infinity) in gen_fsm:terminate/7 line 547
-2017-06-14 01:35:16.952 [error] <0.262.0>@sentibot_kvs:terminate Supervisor sentibot_sup had child sentibot_kvs started with sentibot_kvs:start_link() at <0.265.0> exit with reason call to undefined function sentibot_kvs:terminate({undef,[{sentibot_kvs,handle_info,[{'$gen_call',{<0.266.0>,#Ref<0.0.1.215>},{get}},{state,#{happy => ...,...},...},...],...},...]}, {state,#{happy => ":)",sad => ":("},#{}}, infinity) in context child_terminated
-2017-06-14 01:35:51.379 [info] <0.31.0> Application lager started on node nonode@nohost
-2017-06-14 01:35:51.387 [info] <0.31.0> Application sentibot started on node nonode@nohost
-2017-06-14 01:37:52.490 [info] <0.31.0> Application lager started on node nonode@nohost
-2017-06-14 01:37:52.497 [info] <0.31.0> Application sentibot started on node nonode@nohost
-2017-06-14 01:38:25.162 [info] <0.31.0> Application lager started on node nonode@nohost
-2017-06-14 01:38:25.162 [info] <0.31.0> Application sentibot started on node nonode@nohost
-2017-06-14 01:40:53.331 [info] <0.31.0> Application lager started on node nonode@nohost
-2017-06-14 01:40:53.331 [info] <0.31.0> Application sentibot started on node nonode@nohost
-2017-06-14 01:45:47.052 [info] <0.31.0> Application lager started on node nonode@nohost
-2017-06-14 01:45:47.052 [info] <0.31.0> Application sentibot started on node nonode@nohost
-2017-06-14 11:33:27.870 [info] <0.31.0> Application lager started on node nonode@nohost
-2017-06-14 11:33:27.870 [info] <0.31.0> Application sentibot started on node nonode@nohost
-2017-06-14 11:36:36.033 [info] <0.31.0> Application lager started on node nonode@nohost
-2017-06-14 11:36:36.033 [info] <0.31.0> Application sentibot started on node nonode@nohost
-2017-06-14 11:37:31.369 [info] <0.31.0> Application lager started on node nonode@nohost
-2017-06-14 11:37:31.369 [info] <0.31.0> Application sentibot started on node nonode@nohost
-2017-06-14 11:38:47.757 [info] <0.31.0> Application lager started on node nonode@nohost
-2017-06-14 11:38:47.757 [info] <0.31.0> Application sentibot started on node nonode@nohost
-2017-06-14 11:41:00.026 [info] <0.31.0> Application lager started on node nonode@nohost
-2017-06-14 11:41:00.026 [info] <0.31.0> Application sentibot started on node nonode@nohost
-2017-06-14 11:49:05.286 [info] <0.31.0> Application lager started on node nonode@nohost
-2017-06-14 11:49:05.286 [info] <0.31.0> Application sentibot started on node nonode@nohost
+2017-06-16 00:55:29.262 [info] <0.31.0> Application lager started on node nonode@nohost
+2017-06-16 00:55:29.272 [info] <0.31.0> Application idna started on node nonode@nohost
+2017-06-16 00:55:29.276 [info] <0.31.0> Application mimerl started on node nonode@nohost
+2017-06-16 00:55:29.278 [info] <0.31.0> Application certifi started on node nonode@nohost
+2017-06-16 00:55:29.281 [info] <0.31.0> Application ssl_verify_fun started on node nonode@nohost
+2017-06-16 00:55:29.284 [info] <0.31.0> Application metrics started on node nonode@nohost
+2017-06-16 00:55:29.306 [info] <0.31.0> Application hackney started on node nonode@nohost
+2017-06-16 00:55:29.309 [info] <0.31.0> Application mochiweb_util started on node nonode@nohost
+2017-06-16 00:55:29.309 [info] <0.31.0> Application restc started on node nonode@nohost
+2017-06-16 00:55:29.310 [info] <0.31.0> Application slacker started on node nonode@nohost
+2017-06-16 00:55:30.637 [info] <0.31.0> Application sentibot started on node nonode@nohost
+2017-06-16 00:55:37.715 [error] <0.299.0>@sentibot_kvs:put_user:25 gen_server sentibot_ctl terminated with reason: no match of right hand value {ok,":simple_smile:"} in sentibot_kvs:put_user/3 line 25
+2017-06-16 00:55:37.729 [error] <0.299.0>@sentibot_kvs:put_user:25 CRASH REPORT Process sentibot_ctl with 0 neighbours exited with reason: no match of right hand value {ok,":simple_smile:"} in sentibot_kvs:put_user/3 line 25 in gen_server:terminate/7 line 812
+2017-06-16 00:55:37.729 [error] <0.297.0>@sentibot_kvs:put_user:25 Supervisor sentibot_sup had child sentibot_ctl started with sentibot_ctl:start_link() at <0.299.0> exit with reason no match of right hand value {ok,":simple_smile:"} in sentibot_kvs:put_user/3 line 25 in context child_terminated
+2017-06-16 00:57:53.943 [info] <0.31.0> Application lager started on node nonode@nohost
+2017-06-16 00:57:53.953 [info] <0.31.0> Application idna started on node nonode@nohost
+2017-06-16 00:57:53.956 [info] <0.31.0> Application mimerl started on node nonode@nohost
+2017-06-16 00:57:53.958 [info] <0.31.0> Application certifi started on node nonode@nohost
+2017-06-16 00:57:53.961 [info] <0.31.0> Application ssl_verify_fun started on node nonode@nohost
+2017-06-16 00:57:53.964 [info] <0.31.0> Application metrics started on node nonode@nohost
+2017-06-16 00:57:53.990 [info] <0.31.0> Application hackney started on node nonode@nohost
+2017-06-16 00:57:53.994 [info] <0.31.0> Application mochiweb_util started on node nonode@nohost
+2017-06-16 00:57:53.994 [info] <0.31.0> Application restc started on node nonode@nohost
+2017-06-16 00:57:53.994 [info] <0.31.0> Application slacker started on node nonode@nohost
+2017-06-16 00:57:55.562 [info] <0.31.0> Application sentibot started on node nonode@nohost
+2017-06-16 00:57:59.860 [error] <0.299.0>@sentibot_kvs:put_user:25 gen_server sentibot_ctl terminated with reason: no match of right hand value {ok,":simple_smile:"} in sentibot_kvs:put_user/3 line 25
+2017-06-16 00:57:59.872 [error] <0.299.0>@sentibot_kvs:put_user:25 CRASH REPORT Process sentibot_ctl with 0 neighbours exited with reason: no match of right hand value {ok,":simple_smile:"} in sentibot_kvs:put_user/3 line 25 in gen_server:terminate/7 line 812
+2017-06-16 00:57:59.872 [error] <0.297.0>@sentibot_kvs:put_user:25 Supervisor sentibot_sup had child sentibot_ctl started with sentibot_ctl:start_link() at <0.299.0> exit with reason no match of right hand value {ok,":simple_smile:"} in sentibot_kvs:put_user/3 line 25 in context child_terminated
+2017-06-16 00:59:51.553 [info] <0.31.0> Application lager started on node nonode@nohost
+2017-06-16 00:59:51.565 [info] <0.31.0> Application idna started on node nonode@nohost
+2017-06-16 00:59:51.569 [info] <0.31.0> Application mimerl started on node nonode@nohost
+2017-06-16 00:59:51.572 [info] <0.31.0> Application certifi started on node nonode@nohost
+2017-06-16 00:59:51.575 [info] <0.31.0> Application ssl_verify_fun started on node nonode@nohost
+2017-06-16 00:59:51.578 [info] <0.31.0> Application metrics started on node nonode@nohost
+2017-06-16 00:59:51.596 [info] <0.31.0> Application hackney started on node nonode@nohost
+2017-06-16 00:59:51.599 [info] <0.31.0> Application mochiweb_util started on node nonode@nohost
+2017-06-16 00:59:51.599 [info] <0.31.0> Application restc started on node nonode@nohost
+2017-06-16 00:59:51.599 [info] <0.31.0> Application slacker started on node nonode@nohost
+2017-06-16 00:59:52.873 [info] <0.31.0> Application sentibot started on node nonode@nohost
+2017-06-16 00:59:57.685 [error] <0.299.0>@sentibot_ctl:put_feeling:77 gen_server sentibot_ctl terminated with reason: no match of right hand value ":simple_smile:" in sentibot_ctl:put_feeling/2 line 77
+2017-06-16 00:59:57.696 [error] <0.299.0>@sentibot_ctl:put_feeling:77 CRASH REPORT Process sentibot_ctl with 0 neighbours exited with reason: no match of right hand value ":simple_smile:" in sentibot_ctl:put_feeling/2 line 77 in gen_server:terminate/7 line 812
+2017-06-16 00:59:57.697 [error] <0.297.0>@sentibot_ctl:put_feeling:77 Supervisor sentibot_sup had child sentibot_ctl started with sentibot_ctl:start_link() at <0.299.0> exit with reason no match of right hand value ":simple_smile:" in sentibot_ctl:put_feeling/2 line 77 in context child_terminated
+2017-06-16 01:01:00.617 [info] <0.31.0> Application lager started on node nonode@nohost
+2017-06-16 01:01:00.630 [info] <0.31.0> Application idna started on node nonode@nohost
+2017-06-16 01:01:00.633 [info] <0.31.0> Application mimerl started on node nonode@nohost
+2017-06-16 01:01:00.636 [info] <0.31.0> Application certifi started on node nonode@nohost
+2017-06-16 01:01:00.639 [info] <0.31.0> Application ssl_verify_fun started on node nonode@nohost
+2017-06-16 01:01:00.642 [info] <0.31.0> Application metrics started on node nonode@nohost
+2017-06-16 01:01:00.660 [info] <0.31.0> Application hackney started on node nonode@nohost
+2017-06-16 01:01:00.663 [info] <0.31.0> Application mochiweb_util started on node nonode@nohost
+2017-06-16 01:01:00.663 [info] <0.31.0> Application restc started on node nonode@nohost
+2017-06-16 01:01:00.663 [info] <0.31.0> Application slacker started on node nonode@nohost
+2017-06-16 01:01:02.129 [info] <0.31.0> Application sentibot started on node nonode@nohost
+2017-06-16 01:08:46.187 [info] <0.31.0> Application lager started on node nonode@nohost
+2017-06-16 01:08:46.198 [info] <0.31.0> Application idna started on node nonode@nohost
+2017-06-16 01:08:46.201 [info] <0.31.0> Application mimerl started on node nonode@nohost
+2017-06-16 01:08:46.204 [info] <0.31.0> Application certifi started on node nonode@nohost
+2017-06-16 01:08:46.207 [info] <0.31.0> Application ssl_verify_fun started on node nonode@nohost
+2017-06-16 01:08:46.210 [info] <0.31.0> Application metrics started on node nonode@nohost
+2017-06-16 01:08:46.232 [info] <0.31.0> Application hackney started on node nonode@nohost
+2017-06-16 01:08:46.235 [info] <0.31.0> Application mochiweb_util started on node nonode@nohost
+2017-06-16 01:08:46.235 [info] <0.31.0> Application restc started on node nonode@nohost
+2017-06-16 01:08:46.235 [info] <0.31.0> Application slacker started on node nonode@nohost
+2017-06-16 01:08:47.631 [info] <0.31.0> Application sentibot started on node nonode@nohost
+2017-06-16 01:10:39.005 [info] <0.31.0> Application lager started on node nonode@nohost
+2017-06-16 01:10:39.022 [info] <0.31.0> Application idna started on node nonode@nohost
+2017-06-16 01:10:39.027 [info] <0.31.0> Application mimerl started on node nonode@nohost
+2017-06-16 01:10:39.031 [info] <0.31.0> Application certifi started on node nonode@nohost
+2017-06-16 01:10:39.034 [info] <0.31.0> Application ssl_verify_fun started on node nonode@nohost
+2017-06-16 01:10:39.037 [info] <0.31.0> Application metrics started on node nonode@nohost
+2017-06-16 01:10:39.055 [info] <0.31.0> Application hackney started on node nonode@nohost
+2017-06-16 01:10:39.058 [info] <0.31.0> Application mochiweb_util started on node nonode@nohost
+2017-06-16 01:10:39.058 [info] <0.31.0> Application restc started on node nonode@nohost
+2017-06-16 01:10:39.058 [info] <0.31.0> Application slacker started on node nonode@nohost
+2017-06-16 01:10:40.360 [info] <0.31.0> Application sentibot started on node nonode@nohost
+2017-06-16 01:14:06.423 [info] <0.31.0> Application lager started on node nonode@nohost
+2017-06-16 01:14:06.424 [info] <0.31.0> Application idna started on node nonode@nohost
+2017-06-16 01:14:06.424 [info] <0.31.0> Application mimerl started on node nonode@nohost
+2017-06-16 01:14:06.424 [info] <0.31.0> Application certifi started on node nonode@nohost
+2017-06-16 01:14:06.424 [info] <0.31.0> Application ssl_verify_fun started on node nonode@nohost
+2017-06-16 01:14:06.424 [info] <0.31.0> Application metrics started on node nonode@nohost
+2017-06-16 01:14:06.424 [info] <0.31.0> Application hackney started on node nonode@nohost
+2017-06-16 01:14:06.424 [info] <0.31.0> Application mochiweb_util started on node nonode@nohost
+2017-06-16 01:14:06.424 [info] <0.31.0> Application restc started on node nonode@nohost
+2017-06-16 01:14:06.424 [info] <0.31.0> Application slacker started on node nonode@nohost
+2017-06-16 01:14:07.968 [info] <0.31.0> Application sentibot started on node nonode@nohost
+2017-06-16 01:14:52.654 [info] <0.31.0> Application lager started on node nonode@nohost
+2017-06-16 01:14:52.666 [info] <0.31.0> Application idna started on node nonode@nohost
+2017-06-16 01:14:52.669 [info] <0.31.0> Application mimerl started on node nonode@nohost
+2017-06-16 01:14:52.672 [info] <0.31.0> Application certifi started on node nonode@nohost
+2017-06-16 01:14:52.676 [info] <0.31.0> Application ssl_verify_fun started on node nonode@nohost
+2017-06-16 01:14:52.680 [info] <0.31.0> Application metrics started on node nonode@nohost
+2017-06-16 01:14:52.699 [info] <0.31.0> Application hackney started on node nonode@nohost
+2017-06-16 01:14:52.702 [info] <0.31.0> Application mochiweb_util started on node nonode@nohost
+2017-06-16 01:14:52.702 [info] <0.31.0> Application restc started on node nonode@nohost
+2017-06-16 01:14:52.702 [info] <0.31.0> Application slacker started on node nonode@nohost
+2017-06-16 01:14:54.022 [info] <0.31.0> Application sentibot started on node nonode@nohost
+2017-06-16 01:15:18.478 [error] <0.299.0>@sentibot_ctl:put_feeling:77 gen_server sentibot_ctl terminated with reason: no match of right hand value ":scream:" in sentibot_ctl:put_feeling/2 line 77
+2017-06-16 01:15:18.495 [error] <0.299.0>@sentibot_ctl:put_feeling:77 CRASH REPORT Process sentibot_ctl with 0 neighbours exited with reason: no match of right hand value ":scream:" in sentibot_ctl:put_feeling/2 line 77 in gen_server:terminate/7 line 812
+2017-06-16 01:15:18.495 [error] <0.297.0>@sentibot_ctl:put_feeling:77 Supervisor sentibot_sup had child sentibot_ctl started with sentibot_ctl:start_link() at <0.299.0> exit with reason no match of right hand value ":scream:" in sentibot_ctl:put_feeling/2 line 77 in context child_terminated
+2017-06-16 01:21:05.855 [error] <0.324.0>@sentibot_ctl:parse:58 gen_server sentibot_ctl terminated with reason: no match of right hand value error in sentibot_ctl:parse/3 line 58
+2017-06-16 01:21:05.855 [error] <0.324.0>@sentibot_ctl:parse:58 CRASH REPORT Process sentibot_ctl with 0 neighbours exited with reason: no match of right hand value error in sentibot_ctl:parse/3 line 58 in gen_server:terminate/7 line 812
+2017-06-16 01:21:05.855 [error] <0.297.0>@sentibot_ctl:parse:58 Supervisor sentibot_sup had child sentibot_ctl started with sentibot_ctl:start_link() at <0.324.0> exit with reason no match of right hand value error in sentibot_ctl:parse/3 line 58 in context child_terminated
+2017-06-16 01:22:01.596 [error] <0.300.0>@mochiweb_util:quote_plus:184 gen_server sentibot_slack terminated with reason: bad argument in mochiweb_util:quote_plus/2 line 184
+2017-06-16 01:22:01.596 [error] <0.300.0>@mochiweb_util:quote_plus:184 CRASH REPORT Process sentibot_slack with 0 neighbours exited with reason: bad argument in mochiweb_util:quote_plus/2 line 184
+2017-06-16 01:22:01.596 [error] <0.297.0>@mochiweb_util:quote_plus:184 Supervisor sentibot_sup had child sentibot_slack started with sentibot_slack:start_link() at <0.300.0> exit with reason bad argument in mochiweb_util:quote_plus/2 line 184 in context child_terminated
+2017-06-16 01:22:12.416 [error] <0.500.0>@sentibot_ctl:parse:58 gen_server sentibot_ctl terminated with reason: no match of right hand value error in sentibot_ctl:parse/3 line 58
+2017-06-16 01:22:12.417 [error] <0.500.0>@sentibot_ctl:parse:58 CRASH REPORT Process sentibot_ctl with 0 neighbours exited with reason: no match of right hand value error in sentibot_ctl:parse/3 line 58 in gen_server:terminate/7 line 812
+2017-06-16 01:22:12.417 [error] <0.297.0>@sentibot_ctl:parse:58 Supervisor sentibot_sup had child sentibot_ctl started with sentibot_ctl:start_link() at <0.500.0> exit with reason no match of right hand value error in sentibot_ctl:parse/3 line 58 in context child_terminated
+2017-06-16 01:22:49.549 [error] <0.503.0>@mochiweb_util:quote_plus:184 gen_server sentibot_slack terminated with reason: bad argument in mochiweb_util:quote_plus/2 line 184
+2017-06-16 01:22:49.549 [error] <0.503.0>@mochiweb_util:quote_plus:184 CRASH REPORT Process sentibot_slack with 0 neighbours exited with reason: bad argument in mochiweb_util:quote_plus/2 line 184
+2017-06-16 01:22:49.549 [error] <0.297.0>@mochiweb_util:quote_plus:184 Supervisor sentibot_sup had child sentibot_slack started with sentibot_slack:start_link() at <0.503.0> exit with reason bad argument in mochiweb_util:quote_plus/2 line 184 in context child_terminated
+2017-06-16 01:35:16.806 [info] <0.31.0> Application lager started on node nonode@nohost
+2017-06-16 01:35:16.818 [info] <0.31.0> Application idna started on node nonode@nohost
+2017-06-16 01:35:16.821 [info] <0.31.0> Application mimerl started on node nonode@nohost
+2017-06-16 01:35:16.824 [info] <0.31.0> Application certifi started on node nonode@nohost
+2017-06-16 01:35:16.827 [info] <0.31.0> Application ssl_verify_fun started on node nonode@nohost
+2017-06-16 01:35:16.830 [info] <0.31.0> Application metrics started on node nonode@nohost
+2017-06-16 01:35:16.851 [info] <0.31.0> Application hackney started on node nonode@nohost
+2017-06-16 01:35:16.854 [info] <0.31.0> Application mochiweb_util started on node nonode@nohost
+2017-06-16 01:35:16.854 [info] <0.31.0> Application restc started on node nonode@nohost
+2017-06-16 01:35:16.854 [info] <0.31.0> Application slacker started on node nonode@nohost
+2017-06-16 01:35:18.299 [info] <0.31.0> Application sentibot started on node nonode@nohost
+2017-06-16 01:36:17.699 [error] <0.306.0>@mochiweb_util:quote_plus:184 gen_server sentibot_slack terminated with reason: bad argument in mochiweb_util:quote_plus/2 line 184
+2017-06-16 01:36:17.710 [error] <0.306.0>@mochiweb_util:quote_plus:184 CRASH REPORT Process sentibot_slack with 0 neighbours exited with reason: bad argument in mochiweb_util:quote_plus/2 line 184
+2017-06-16 01:36:17.711 [error] <0.303.0>@mochiweb_util:quote_plus:184 Supervisor sentibot_sup had child sentibot_slack started with sentibot_slack:start_link() at <0.306.0> exit with reason bad argument in mochiweb_util:quote_plus/2 line 184 in context child_terminated
+2017-06-16 01:36:50.599 [error] <0.330.0>@mochiweb_util:quote_plus:184 gen_server sentibot_slack terminated with reason: bad argument in mochiweb_util:quote_plus/2 line 184
+2017-06-16 01:36:50.599 [error] <0.330.0>@mochiweb_util:quote_plus:184 CRASH REPORT Process sentibot_slack with 0 neighbours exited with reason: bad argument in mochiweb_util:quote_plus/2 line 184
+2017-06-16 01:36:50.599 [error] <0.303.0>@mochiweb_util:quote_plus:184 Supervisor sentibot_sup had child sentibot_slack started with sentibot_slack:start_link() at <0.330.0> exit with reason bad argument in mochiweb_util:quote_plus/2 line 184 in context child_terminated
+2017-06-16 01:36:58.290 [error] <0.501.0>@mochiweb_util:quote_plus:184 gen_server sentibot_slack terminated with reason: bad argument in mochiweb_util:quote_plus/2 line 184
+2017-06-16 01:36:58.291 [error] <0.501.0>@mochiweb_util:quote_plus:184 CRASH REPORT Process sentibot_slack with 0 neighbours exited with reason: bad argument in mochiweb_util:quote_plus/2 line 184
+2017-06-16 01:36:58.291 [error] <0.303.0>@mochiweb_util:quote_plus:184 Supervisor sentibot_sup had child sentibot_slack started with sentibot_slack:start_link() at <0.501.0> exit with reason bad argument in mochiweb_util:quote_plus/2 line 184 in context child_terminated
+2017-06-16 01:39:30.314 [info] <0.31.0> Application lager started on node nonode@nohost
+2017-06-16 01:39:30.326 [info] <0.31.0> Application idna started on node nonode@nohost
+2017-06-16 01:39:30.331 [info] <0.31.0> Application mimerl started on node nonode@nohost
+2017-06-16 01:39:30.334 [info] <0.31.0> Application certifi started on node nonode@nohost
+2017-06-16 01:39:30.338 [info] <0.31.0> Application ssl_verify_fun started on node nonode@nohost
+2017-06-16 01:39:30.341 [info] <0.31.0> Application metrics started on node nonode@nohost
+2017-06-16 01:39:30.359 [info] <0.31.0> Application hackney started on node nonode@nohost
+2017-06-16 01:39:30.362 [info] <0.31.0> Application mochiweb_util started on node nonode@nohost
+2017-06-16 01:39:30.362 [info] <0.31.0> Application restc started on node nonode@nohost
+2017-06-16 01:39:30.363 [info] <0.31.0> Application slacker started on node nonode@nohost
+2017-06-16 01:39:31.663 [info] <0.31.0> Application sentibot started on node nonode@nohost
+2017-06-16 01:39:50.665 [error] <0.299.0> gen_server sentibot_ctl terminated with reason: {timeout,{gen_server,call,[sentibot_kvs,{clear,"G5TH3878R"}]}} in gen_server:call/2 line 204
+2017-06-16 01:39:50.676 [error] <0.299.0> CRASH REPORT Process sentibot_ctl with 0 neighbours exited with reason: {timeout,{gen_server,call,[sentibot_kvs,{clear,"G5TH3878R"}]}} in gen_server:terminate/7 line 812
+2017-06-16 01:39:50.676 [error] <0.297.0> Supervisor sentibot_sup had child sentibot_ctl started with sentibot_ctl:start_link() at <0.299.0> exit with reason {timeout,{gen_server,call,[sentibot_kvs,{clear,"G5TH3878R"}]}} in context child_terminated
+2017-06-16 01:40:39.732 [error] <0.300.0>@mochiweb_util:quote_plus:184 gen_server sentibot_slack terminated with reason: bad argument in mochiweb_util:quote_plus/2 line 184
+2017-06-16 01:40:39.732 [error] <0.300.0>@mochiweb_util:quote_plus:184 CRASH REPORT Process sentibot_slack with 0 neighbours exited with reason: bad argument in mochiweb_util:quote_plus/2 line 184
+2017-06-16 01:40:39.732 [error] <0.297.0>@mochiweb_util:quote_plus:184 Supervisor sentibot_sup had child sentibot_slack started with sentibot_slack:start_link() at <0.300.0> exit with reason bad argument in mochiweb_util:quote_plus/2 line 184 in context child_terminated
+2017-06-16 01:41:32.328 [info] <0.31.0> Application lager started on node nonode@nohost
+2017-06-16 01:41:32.340 [info] <0.31.0> Application idna started on node nonode@nohost
+2017-06-16 01:41:32.344 [info] <0.31.0> Application mimerl started on node nonode@nohost
+2017-06-16 01:41:32.347 [info] <0.31.0> Application certifi started on node nonode@nohost
+2017-06-16 01:41:32.350 [info] <0.31.0> Application ssl_verify_fun started on node nonode@nohost
+2017-06-16 01:41:32.353 [info] <0.31.0> Application metrics started on node nonode@nohost
+2017-06-16 01:41:32.370 [info] <0.31.0> Application hackney started on node nonode@nohost
+2017-06-16 01:41:32.372 [info] <0.31.0> Application mochiweb_util started on node nonode@nohost
+2017-06-16 01:41:32.372 [info] <0.31.0> Application restc started on node nonode@nohost
+2017-06-16 01:41:32.372 [info] <0.31.0> Application slacker started on node nonode@nohost
+2017-06-16 01:41:33.627 [info] <0.31.0> Application sentibot started on node nonode@nohost
+2017-06-16 01:41:40.476 [error] <0.294.0>@mochiweb_util:quote_plus:184 gen_server sentibot_slack terminated with reason: bad argument in mochiweb_util:quote_plus/2 line 184
+2017-06-16 01:41:40.499 [error] <0.294.0>@mochiweb_util:quote_plus:184 CRASH REPORT Process sentibot_slack with 0 neighbours exited with reason: bad argument in mochiweb_util:quote_plus/2 line 184
+2017-06-16 01:41:40.500 [error] <0.291.0>@mochiweb_util:quote_plus:184 Supervisor sentibot_sup had child sentibot_slack started with sentibot_slack:start_link() at <0.294.0> exit with reason bad argument in mochiweb_util:quote_plus/2 line 184 in context child_terminated
+2017-06-16 01:43:40.833 [info] <0.31.0> Application lager started on node nonode@nohost
+2017-06-16 01:43:40.844 [info] <0.31.0> Application idna started on node nonode@nohost
+2017-06-16 01:43:40.848 [info] <0.31.0> Application mimerl started on node nonode@nohost
+2017-06-16 01:43:40.850 [info] <0.31.0> Application certifi started on node nonode@nohost
+2017-06-16 01:43:40.854 [info] <0.31.0> Application ssl_verify_fun started on node nonode@nohost
+2017-06-16 01:43:40.857 [info] <0.31.0> Application metrics started on node nonode@nohost
+2017-06-16 01:43:40.872 [info] <0.31.0> Application hackney started on node nonode@nohost
+2017-06-16 01:43:40.874 [info] <0.31.0> Application mochiweb_util started on node nonode@nohost
+2017-06-16 01:43:40.874 [info] <0.31.0> Application restc started on node nonode@nohost
+2017-06-16 01:43:40.874 [info] <0.31.0> Application slacker started on node nonode@nohost
+2017-06-16 01:43:41.963 [info] <0.31.0> Application sentibot started on node nonode@nohost
+2017-06-16 01:43:58.388 [error] <0.300.0>@mochiweb_util:quote_plus:184 gen_server sentibot_slack terminated with reason: bad argument in mochiweb_util:quote_plus/2 line 184
+2017-06-16 01:43:58.400 [error] <0.300.0>@mochiweb_util:quote_plus:184 CRASH REPORT Process sentibot_slack with 0 neighbours exited with reason: bad argument in mochiweb_util:quote_plus/2 line 184
+2017-06-16 01:43:58.400 [error] <0.297.0>@mochiweb_util:quote_plus:184 Supervisor sentibot_sup had child sentibot_slack started with sentibot_slack:start_link() at <0.300.0> exit with reason bad argument in mochiweb_util:quote_plus/2 line 184 in context child_terminated
+2017-06-16 01:46:51.004 [info] <0.31.0> Application lager started on node nonode@nohost
+2017-06-16 01:46:51.014 [info] <0.31.0> Application idna started on node nonode@nohost
+2017-06-16 01:46:51.017 [info] <0.31.0> Application mimerl started on node nonode@nohost
+2017-06-16 01:46:51.020 [info] <0.31.0> Application certifi started on node nonode@nohost
+2017-06-16 01:46:51.023 [info] <0.31.0> Application ssl_verify_fun started on node nonode@nohost
+2017-06-16 01:46:51.026 [info] <0.31.0> Application metrics started on node nonode@nohost
+2017-06-16 01:46:51.040 [info] <0.31.0> Application hackney started on node nonode@nohost
+2017-06-16 01:46:51.043 [info] <0.31.0> Application mochiweb_util started on node nonode@nohost
+2017-06-16 01:46:51.043 [info] <0.31.0> Application restc started on node nonode@nohost
+2017-06-16 01:46:51.043 [info] <0.31.0> Application slacker started on node nonode@nohost
+2017-06-16 01:46:52.297 [info] <0.31.0> Application sentibot started on node nonode@nohost
+2017-06-16 01:47:32.573 [error] <0.294.0>@mochiweb_util:quote_plus:184 gen_server sentibot_slack terminated with reason: bad argument in mochiweb_util:quote_plus/2 line 184
+2017-06-16 01:47:32.584 [error] <0.294.0>@mochiweb_util:quote_plus:184 CRASH REPORT Process sentibot_slack with 0 neighbours exited with reason: bad argument in mochiweb_util:quote_plus/2 line 184
+2017-06-16 01:47:32.584 [error] <0.291.0>@mochiweb_util:quote_plus:184 Supervisor sentibot_sup had child sentibot_slack started with sentibot_slack:start_link() at <0.294.0> exit with reason bad argument in mochiweb_util:quote_plus/2 line 184 in context child_terminated
+2017-06-16 01:49:33.072 [error] <0.318.0>@mochiweb_util:quote_plus:184 gen_server sentibot_slack terminated with reason: bad argument in mochiweb_util:quote_plus/2 line 184
+2017-06-16 01:49:33.072 [error] <0.318.0>@mochiweb_util:quote_plus:184 CRASH REPORT Process sentibot_slack with 0 neighbours exited with reason: bad argument in mochiweb_util:quote_plus/2 line 184
+2017-06-16 01:49:33.072 [error] <0.291.0>@mochiweb_util:quote_plus:184 Supervisor sentibot_sup had child sentibot_slack started with sentibot_slack:start_link() at <0.318.0> exit with reason bad argument in mochiweb_util:quote_plus/2 line 184 in context child_terminated
+2017-06-16 01:50:43.040 [info] <0.31.0> Application lager started on node nonode@nohost
+2017-06-16 01:50:43.052 [info] <0.31.0> Application idna started on node nonode@nohost
+2017-06-16 01:50:43.055 [info] <0.31.0> Application mimerl started on node nonode@nohost
+2017-06-16 01:50:43.058 [info] <0.31.0> Application certifi started on node nonode@nohost
+2017-06-16 01:50:43.061 [info] <0.31.0> Application ssl_verify_fun started on node nonode@nohost
+2017-06-16 01:50:43.063 [info] <0.31.0> Application metrics started on node nonode@nohost
+2017-06-16 01:50:43.082 [info] <0.31.0> Application hackney started on node nonode@nohost
+2017-06-16 01:50:43.085 [info] <0.31.0> Application mochiweb_util started on node nonode@nohost
+2017-06-16 01:50:43.085 [info] <0.31.0> Application restc started on node nonode@nohost
+2017-06-16 01:50:43.085 [info] <0.31.0> Application slacker started on node nonode@nohost
+2017-06-16 01:50:44.454 [info] <0.31.0> Application sentibot started on node nonode@nohost
+2017-06-16 01:51:00.700 [error] <0.306.0>@mochiweb_util:quote_plus:184 gen_server sentibot_slack terminated with reason: bad argument in mochiweb_util:quote_plus/2 line 184
+2017-06-16 01:51:00.714 [error] <0.306.0>@mochiweb_util:quote_plus:184 CRASH REPORT Process sentibot_slack with 0 neighbours exited with reason: bad argument in mochiweb_util:quote_plus/2 line 184
+2017-06-16 01:51:00.715 [error] <0.303.0>@mochiweb_util:quote_plus:184 Supervisor sentibot_sup had child sentibot_slack started with sentibot_slack:start_link() at <0.306.0> exit with reason bad argument in mochiweb_util:quote_plus/2 line 184 in context child_terminated
+2017-06-16 01:53:16.266 [error] <0.305.0>@sentibot_ctl:put_feeling:78 gen_server sentibot_ctl terminated with reason: no match of right hand value ":flag-cp:" in sentibot_ctl:put_feeling/2 line 78
+2017-06-16 01:53:16.266 [error] <0.305.0>@sentibot_ctl:put_feeling:78 CRASH REPORT Process sentibot_ctl with 0 neighbours exited with reason: no match of right hand value ":flag-cp:" in sentibot_ctl:put_feeling/2 line 78 in gen_server:terminate/7 line 812
+2017-06-16 01:53:16.266 [error] <0.303.0>@sentibot_ctl:put_feeling:78 Supervisor sentibot_sup had child sentibot_ctl started with sentibot_ctl:start_link() at <0.305.0> exit with reason no match of right hand value ":flag-cp:" in sentibot_ctl:put_feeling/2 line 78 in context child_terminated
+2017-06-16 01:53:25.035 [error] <0.503.0>@sentibot_ctl:put_feeling:78 gen_server sentibot_ctl terminated with reason: no match of right hand value ":panda_face:" in sentibot_ctl:put_feeling/2 line 78
+2017-06-16 01:53:25.035 [error] <0.503.0>@sentibot_ctl:put_feeling:78 CRASH REPORT Process sentibot_ctl with 0 neighbours exited with reason: no match of right hand value ":panda_face:" in sentibot_ctl:put_feeling/2 line 78 in gen_server:terminate/7 line 812
+2017-06-16 01:53:25.035 [error] <0.303.0>@sentibot_ctl:put_feeling:78 Supervisor sentibot_sup had child sentibot_ctl started with sentibot_ctl:start_link() at <0.503.0> exit with reason no match of right hand value ":panda_face:" in sentibot_ctl:put_feeling/2 line 78 in context child_terminated
+2017-06-16 01:55:32.571 [error] <0.504.0>@sentibot_ctl:put_feeling:78 gen_server sentibot_ctl terminated with reason: no match of right hand value ":panda_face:" in sentibot_ctl:put_feeling/2 line 78
+2017-06-16 01:55:32.571 [error] <0.504.0>@sentibot_ctl:put_feeling:78 CRASH REPORT Process sentibot_ctl with 0 neighbours exited with reason: no match of right hand value ":panda_face:" in sentibot_ctl:put_feeling/2 line 78 in gen_server:terminate/7 line 812
+2017-06-16 01:55:32.571 [error] <0.303.0>@sentibot_ctl:put_feeling:78 Supervisor sentibot_sup had child sentibot_ctl started with sentibot_ctl:start_link() at <0.504.0> exit with reason no match of right hand value ":panda_face:" in sentibot_ctl:put_feeling/2 line 78 in context child_terminated
+2017-06-16 01:55:58.121 [error] <0.507.0>@sentibot_ctl:put_feeling:78 gen_server sentibot_ctl terminated with reason: no match of right hand value ":panda_face:" in sentibot_ctl:put_feeling/2 line 78
+2017-06-16 01:55:58.121 [error] <0.507.0>@sentibot_ctl:put_feeling:78 CRASH REPORT Process sentibot_ctl with 0 neighbours exited with reason: no match of right hand value ":panda_face:" in sentibot_ctl:put_feeling/2 line 78 in gen_server:terminate/7 line 812
+2017-06-16 01:55:58.121 [error] <0.303.0>@sentibot_ctl:put_feeling:78 Supervisor sentibot_sup had child sentibot_ctl started with sentibot_ctl:start_link() at <0.507.0> exit with reason no match of right hand value ":panda_face:" in sentibot_ctl:put_feeling/2 line 78 in context child_terminated
+2017-06-16 01:57:44.386 [error] <0.508.0>@sentibot_ctl:put_feeling:78 gen_server sentibot_ctl terminated with reason: no match of right hand value ":spider:" in sentibot_ctl:put_feeling/2 line 78
+2017-06-16 01:57:44.386 [error] <0.508.0>@sentibot_ctl:put_feeling:78 CRASH REPORT Process sentibot_ctl with 0 neighbours exited with reason: no match of right hand value ":spider:" in sentibot_ctl:put_feeling/2 line 78 in gen_server:terminate/7 line 812
+2017-06-16 01:57:44.386 [error] <0.303.0>@sentibot_ctl:put_feeling:78 Supervisor sentibot_sup had child sentibot_ctl started with sentibot_ctl:start_link() at <0.508.0> exit with reason no match of right hand value ":spider:" in sentibot_ctl:put_feeling/2 line 78 in context child_terminated
+2017-06-16 01:59:45.429 [error] <0.511.0>@sentibot_ctl:put_feeling:78 gen_server sentibot_ctl terminated with reason: no match of right hand value ":spider:" in sentibot_ctl:put_feeling/2 line 78
+2017-06-16 01:59:45.429 [error] <0.511.0>@sentibot_ctl:put_feeling:78 CRASH REPORT Process sentibot_ctl with 0 neighbours exited with reason: no match of right hand value ":spider:" in sentibot_ctl:put_feeling/2 line 78 in gen_server:terminate/7 line 812
+2017-06-16 01:59:45.429 [error] <0.303.0>@sentibot_ctl:put_feeling:78 Supervisor sentibot_sup had child sentibot_ctl started with sentibot_ctl:start_link() at <0.511.0> exit with reason no match of right hand value ":spider:" in sentibot_ctl:put_feeling/2 line 78 in context child_terminated
+2017-06-16 02:01:04.543 [info] <0.31.0> Application lager started on node nonode@nohost
+2017-06-16 02:01:04.554 [info] <0.31.0> Application idna started on node nonode@nohost
+2017-06-16 02:01:04.557 [info] <0.31.0> Application mimerl started on node nonode@nohost
+2017-06-16 02:01:04.560 [info] <0.31.0> Application certifi started on node nonode@nohost
+2017-06-16 02:01:04.565 [info] <0.31.0> Application ssl_verify_fun started on node nonode@nohost
+2017-06-16 02:01:04.569 [info] <0.31.0> Application metrics started on node nonode@nohost
+2017-06-16 02:01:04.589 [info] <0.31.0> Application hackney started on node nonode@nohost
+2017-06-16 02:01:04.592 [info] <0.31.0> Application mochiweb_util started on node nonode@nohost
+2017-06-16 02:01:04.592 [info] <0.31.0> Application restc started on node nonode@nohost
+2017-06-16 02:01:04.592 [info] <0.31.0> Application slacker started on node nonode@nohost
+2017-06-16 02:01:06.018 [info] <0.31.0> Application sentibot started on node nonode@nohost
+2017-06-16 02:01:41.316 [error] <0.299.0>@sentibot_ctl:put_feeling:78 gen_server sentibot_ctl terminated with reason: no match of right hand value ":guitar:" in sentibot_ctl:put_feeling/2 line 78
+2017-06-16 02:01:41.332 [error] <0.299.0>@sentibot_ctl:put_feeling:78 CRASH REPORT Process sentibot_ctl with 0 neighbours exited with reason: no match of right hand value ":guitar:" in sentibot_ctl:put_feeling/2 line 78 in gen_server:terminate/7 line 812
+2017-06-16 02:01:41.332 [error] <0.297.0>@sentibot_ctl:put_feeling:78 Supervisor sentibot_sup had child sentibot_ctl started with sentibot_ctl:start_link() at <0.299.0> exit with reason no match of right hand value ":guitar:" in sentibot_ctl:put_feeling/2 line 78 in context child_terminated
+2017-06-16 02:06:02.269 [info] <0.31.0> Application lager started on node nonode@nohost
+2017-06-16 02:06:02.278 [info] <0.31.0> Application idna started on node nonode@nohost
+2017-06-16 02:06:02.281 [info] <0.31.0> Application mimerl started on node nonode@nohost
+2017-06-16 02:06:02.283 [info] <0.31.0> Application certifi started on node nonode@nohost
+2017-06-16 02:06:02.286 [info] <0.31.0> Application ssl_verify_fun started on node nonode@nohost
+2017-06-16 02:06:02.289 [info] <0.31.0> Application metrics started on node nonode@nohost
+2017-06-16 02:06:02.304 [info] <0.31.0> Application hackney started on node nonode@nohost
+2017-06-16 02:06:02.306 [info] <0.31.0> Application mochiweb_util started on node nonode@nohost
+2017-06-16 02:06:02.306 [info] <0.31.0> Application restc started on node nonode@nohost
+2017-06-16 02:06:02.306 [info] <0.31.0> Application slacker started on node nonode@nohost
+2017-06-16 02:06:03.912 [info] <0.31.0> Application sentibot started on node nonode@nohost
+2017-06-16 02:15:27.510 [info] <0.31.0> Application lager started on node nonode@nohost
+2017-06-16 02:15:27.520 [info] <0.31.0> Application idna started on node nonode@nohost
+2017-06-16 02:15:27.523 [info] <0.31.0> Application mimerl started on node nonode@nohost
+2017-06-16 02:15:27.525 [info] <0.31.0> Application certifi started on node nonode@nohost
+2017-06-16 02:15:27.528 [info] <0.31.0> Application ssl_verify_fun started on node nonode@nohost
+2017-06-16 02:15:27.531 [info] <0.31.0> Application metrics started on node nonode@nohost
+2017-06-16 02:15:27.552 [info] <0.31.0> Application hackney started on node nonode@nohost
+2017-06-16 02:15:27.555 [info] <0.31.0> Application mochiweb_util started on node nonode@nohost
+2017-06-16 02:15:27.555 [info] <0.31.0> Application restc started on node nonode@nohost
+2017-06-16 02:15:27.555 [info] <0.31.0> Application slacker started on node nonode@nohost
+2017-06-16 02:15:28.898 [info] <0.31.0> Application sentibot started on node nonode@nohost
+2017-06-16 02:16:08.728 [error] <0.298.0>@sentibot_kvs:handle_call:83 gen_server sentibot_kvs terminated with reason: no match of right hand value #{} in sentibot_kvs:handle_call/3 line 83
+2017-06-16 02:16:08.747 [error] <0.298.0>@sentibot_kvs:handle_call:83 CRASH REPORT Process sentibot_kvs with 0 neighbours exited with reason: no match of right hand value #{} in sentibot_kvs:handle_call/3 line 83 in gen_server:terminate/7 line 812
+2017-06-16 02:16:08.748 [error] <0.297.0>@sentibot_kvs:handle_call:83 Supervisor sentibot_sup had child sentibot_kvs started with sentibot_kvs:start_link() at <0.298.0> exit with reason no match of right hand value #{} in sentibot_kvs:handle_call/3 line 83 in context child_terminated
+2017-06-16 02:16:08.748 [error] <0.299.0> gen_server sentibot_ctl terminated with reason: {{{badmatch,#{}},[{sentibot_kvs,handle_call,3,[{file,"/Users/sebastien/Documents/HEIG-VD/SEM6/MCS/HEIG-MCS-sentibot/_build/default/lib/sentibot/src/sentibot_kvs.erl"},{line,83}]},{gen_server,try_handle_call,4,[{file,"gen_server.erl"},{line,615}]},{gen_server,handle_msg,5,[{file,"gen_server.erl"},{line,647}]},{proc_lib,init_p_do_apply,3,[{file,"proc_lib.erl"},{line,247}]}]},{gen_server,call,[sentibot_kvs,{clear,"G5TH3878R"}]}} in gen_server:call/2 line 204
+2017-06-16 02:16:08.749 [error] <0.299.0> CRASH REPORT Process sentibot_ctl with 0 neighbours exited with reason: {{{badmatch,#{}},[{sentibot_kvs,handle_call,3,[{file,"/Users/sebastien/Documents/HEIG-VD/SEM6/MCS/HEIG-MCS-sentibot/_build/default/lib/sentibot/src/sentibot_kvs.erl"},{line,83}]},{gen_server,try_handle_call,4,[{file,"gen_server.erl"},{line,615}]},{gen_server,handle_msg,5,[{file,"gen_server.erl"},{line,647}]},{proc_lib,init_p_do_apply,3,[{file,"proc_lib.erl"},{line,247}]}]},{gen_server,call,[sentibot_kvs,{clear,"G5TH3878R"}]}} in gen_server:terminate/7 line 812
+2017-06-16 02:16:08.749 [error] <0.297.0> Supervisor sentibot_sup had child sentibot_ctl started with sentibot_ctl:start_link() at <0.299.0> exit with reason {{{badmatch,#{}},[{sentibot_kvs,handle_call,3,[{file,"/Users/sebastien/Documents/HEIG-VD/SEM6/MCS/HEIG-MCS-sentibot/_build/default/lib/sentibot/src/sentibot_kvs.erl"},{line,83}]},{gen_server,try_handle_call,4,[{file,"gen_server.erl"},{line,615}]},{gen_server,handle_msg,5,[{file,"gen_server.erl"},{line,647}]},{proc_lib,init_p_do_apply,3,[{file,"proc_lib.erl"},{line,247}]}]},{gen_server,call,[sentibot_kvs,{clear,"G5TH3878R"}]}} in context child_terminated
+2017-06-16 02:16:08.749 [error] <0.297.0> Supervisor sentibot_sup had child sentibot_ctl started with sentibot_ctl:start_link() at <0.299.0> exit with reason reached_max_restart_intensity in context shutdown
+2017-06-16 02:16:08.754 [info] <0.31.0> Application sentibot exited with reason: shutdown
+2017-06-16 02:17:08.651 [info] <0.31.0> Application lager started on node nonode@nohost
+2017-06-16 02:17:08.662 [info] <0.31.0> Application idna started on node nonode@nohost
+2017-06-16 02:17:08.664 [info] <0.31.0> Application mimerl started on node nonode@nohost
+2017-06-16 02:17:08.667 [info] <0.31.0> Application certifi started on node nonode@nohost
+2017-06-16 02:17:08.670 [info] <0.31.0> Application ssl_verify_fun started on node nonode@nohost
+2017-06-16 02:17:08.672 [info] <0.31.0> Application metrics started on node nonode@nohost
+2017-06-16 02:17:08.687 [info] <0.31.0> Application hackney started on node nonode@nohost
+2017-06-16 02:17:08.689 [info] <0.31.0> Application mochiweb_util started on node nonode@nohost
+2017-06-16 02:17:08.689 [info] <0.31.0> Application restc started on node nonode@nohost
+2017-06-16 02:17:08.689 [info] <0.31.0> Application slacker started on node nonode@nohost
+2017-06-16 02:17:10.080 [info] <0.31.0> Application sentibot started on node nonode@nohost
+2017-06-16 02:26:13.165 [info] <0.31.0> Application lager started on node nonode@nohost
+2017-06-16 02:26:13.176 [info] <0.31.0> Application idna started on node nonode@nohost
+2017-06-16 02:26:13.180 [info] <0.31.0> Application mimerl started on node nonode@nohost
+2017-06-16 02:26:13.182 [info] <0.31.0> Application certifi started on node nonode@nohost
+2017-06-16 02:26:13.185 [info] <0.31.0> Application ssl_verify_fun started on node nonode@nohost
+2017-06-16 02:26:13.188 [info] <0.31.0> Application metrics started on node nonode@nohost
+2017-06-16 02:26:13.203 [info] <0.31.0> Application hackney started on node nonode@nohost
+2017-06-16 02:26:13.206 [info] <0.31.0> Application mochiweb_util started on node nonode@nohost
+2017-06-16 02:26:13.206 [info] <0.31.0> Application restc started on node nonode@nohost
+2017-06-16 02:26:13.206 [info] <0.31.0> Application slacker started on node nonode@nohost
+2017-06-16 02:26:14.535 [info] <0.31.0> Application sentibot started on node nonode@nohost
+2017-06-16 02:28:53.538 [info] <0.31.0> Application lager started on node nonode@nohost
+2017-06-16 02:28:53.548 [info] <0.31.0> Application idna started on node nonode@nohost
+2017-06-16 02:28:53.550 [info] <0.31.0> Application mimerl started on node nonode@nohost
+2017-06-16 02:28:53.553 [info] <0.31.0> Application certifi started on node nonode@nohost
+2017-06-16 02:28:53.556 [info] <0.31.0> Application ssl_verify_fun started on node nonode@nohost
+2017-06-16 02:28:53.558 [info] <0.31.0> Application metrics started on node nonode@nohost
+2017-06-16 02:28:53.574 [info] <0.31.0> Application hackney started on node nonode@nohost
+2017-06-16 02:28:53.576 [info] <0.31.0> Application mochiweb_util started on node nonode@nohost
+2017-06-16 02:28:53.576 [info] <0.31.0> Application restc started on node nonode@nohost
+2017-06-16 02:28:53.576 [info] <0.31.0> Application slacker started on node nonode@nohost
+2017-06-16 02:28:54.878 [info] <0.31.0> Application sentibot started on node nonode@nohost
+2017-06-16 02:30:29.536 [info] <0.31.0> Application lager started on node nonode@nohost
+2017-06-16 02:30:29.547 [info] <0.31.0> Application idna started on node nonode@nohost
+2017-06-16 02:30:29.551 [info] <0.31.0> Application mimerl started on node nonode@nohost
+2017-06-16 02:30:29.554 [info] <0.31.0> Application certifi started on node nonode@nohost
+2017-06-16 02:30:29.557 [info] <0.31.0> Application ssl_verify_fun started on node nonode@nohost
+2017-06-16 02:30:29.560 [info] <0.31.0> Application metrics started on node nonode@nohost
+2017-06-16 02:30:29.580 [info] <0.31.0> Application hackney started on node nonode@nohost
+2017-06-16 02:30:29.583 [info] <0.31.0> Application mochiweb_util started on node nonode@nohost
+2017-06-16 02:30:29.583 [info] <0.31.0> Application restc started on node nonode@nohost
+2017-06-16 02:30:29.583 [info] <0.31.0> Application slacker started on node nonode@nohost
+2017-06-16 02:30:30.921 [info] <0.31.0> Application sentibot started on node nonode@nohost
+2017-06-16 02:31:47.867 [info] <0.31.0> Application lager started on node nonode@nohost
+2017-06-16 02:31:47.876 [info] <0.31.0> Application idna started on node nonode@nohost
+2017-06-16 02:31:47.879 [info] <0.31.0> Application mimerl started on node nonode@nohost
+2017-06-16 02:31:47.881 [info] <0.31.0> Application certifi started on node nonode@nohost
+2017-06-16 02:31:47.884 [info] <0.31.0> Application ssl_verify_fun started on node nonode@nohost
+2017-06-16 02:31:47.887 [info] <0.31.0> Application metrics started on node nonode@nohost
+2017-06-16 02:31:47.902 [info] <0.31.0> Application hackney started on node nonode@nohost
+2017-06-16 02:31:47.904 [info] <0.31.0> Application mochiweb_util started on node nonode@nohost
+2017-06-16 02:31:47.904 [info] <0.31.0> Application restc started on node nonode@nohost
+2017-06-16 02:31:47.904 [info] <0.31.0> Application slacker started on node nonode@nohost
+2017-06-16 02:31:49.362 [info] <0.31.0> Application sentibot started on node nonode@nohost

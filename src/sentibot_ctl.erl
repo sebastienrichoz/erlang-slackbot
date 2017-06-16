@@ -61,7 +61,7 @@ parse(message, EventMap, Name) ->
   case Chunks of
     ["i", "am", Feeling | _] -> put_feeling(EventMap, Feeling), Name;
     [Name, "sentiments" | _] -> get_feelings(EventMap), Name;
-    [Name, "clear" | _] -> clear_feelings(EventMap, Name);
+    [Name, "clear" | _] -> clear_feelings(EventMap, Name), Name;
     [Name, "help" | _] -> send_help(EventMap, Name), Name;
     [Name, "rename", NewName] -> send_rename(EventMap, Name, NewName), lists:flatten(NewName, ":");
     [Name, "add", Ascii, NewFeeling] -> new_feeling(EventMap, NewFeeling, Ascii), Name;
@@ -75,7 +75,8 @@ put_feeling(EventMap, Feeling) ->
       {ok, UserIdBin} = maps:find(<<"user">>, EventMap),
       Username = sentibot_slack:get_username(UserIdBin),
       UserKey = lists:flatten(["<@", binary:bin_to_list(UserIdBin), "|", Username, ">"]),
-      Emoji = sentibot_kvs:put_user(UserKey, Feeling, Channel),
+      {ok, Emoji} = sentibot_kvs:put_user(UserKey, Feeling, Channel),
+      io:fwrite("Emoji ~p~n", [Emoji]),
       sentibot_slack:send(format(UserKey, Emoji), Channel);
     false -> ok
   end.
@@ -103,6 +104,7 @@ get_channel(EventMap) ->
 send_help(EventMap, Name) ->
   Channel = get_channel(EventMap),
   Feelings = sentibot_kvs:get_feelings(Channel),
+  io:fwrite("Feelings ~p~n", [Feelings]),
   Msg = format_help(Feelings, Name),
   sentibot_slack:send(Msg, Channel).
 
@@ -115,8 +117,7 @@ new_feeling(EventMap, NewFeeling, Ascii) ->
   Channel = get_channel(EventMap),
   [Head | _] = Ascii,
   [End | _] = lists:reverse(Ascii),
-  io:fwrite("head tail ~p, ~p~n", [{Head, End}, {":", ":"}]),
-case {Head, End}  of
+  case {Head, End}  of
     {58, 58} ->
       sentibot_kvs:put_feeling(NewFeeling, Ascii, Channel),
       Msg = format_new_feeling(correct_format, NewFeeling, Ascii);
@@ -146,19 +147,20 @@ format_help(Feelings, BotName) ->
   Intro = lists:flatten([":hugging_face: *Hi !* '", BotName, "' analyses users feelings. Here are the available commands:\n\n"]),
   Help = lists:flatten(["`", BotName, " help` : display this help.\n"]),
   Add = lists:flatten(["`", BotName, " add emoji feeling` : Add a new feeling. Example: `", BotName, " add :scream: scared`.\n"]),
+  Clear = lists:flatten(["`", BotName, " clear` : Remove the personal feelings added (keep the defaults) and clear sentiments list.\n"]),
   Feeling = lists:flatten(["`I am <S>, where <S> := ", lists:flatten(lists:join(" | ", Feelings)), "` : save your feeling.\n"]),
   All = lists:flatten(["`", BotName, " sentiments` : all feelings of this channel.\n"]),
   Rename = lists:flatten(["`", BotName, " rename newname` : Rename _", BotName, "_ into _newname:_.\n"]),
-  lists:flatten([Intro, Help, Add, Feeling, All, Rename]).
+  lists:flatten([Intro, Help, Add, Clear, Feeling, All, Rename]).
 
 format_rename(OldName, NewName) ->
   lists:flatten(["_", OldName, "_ was successfully renamed into *", NewName, "* :ok_hand:"]).
 
 % clear feelings
 format_clear(BotName) ->
-  lists:flatten(["_", "Feelings have successfully been removed from *", BotName, "* :ok_hand:"]).
+  lists:flatten(["Your personal feelings have successfully been removed from *", BotName, "* :ok_hand:"]).
 
 format_new_feeling(correct_format, Feeling, Ascii) ->
   lists:flatten(["New Feeling `", Feeling, "` with emoji ", Ascii, " successfully added!"]);
 format_new_feeling(wrong_format, Feeling, Ascii) ->
-  lists:flatten(["Could not add Feeling `", Feeling, "` with emoji ", Ascii, ". The format is wrong."]).
+  lists:flatten(["Could not add Feeling `", Feeling, "` with emoji `", Ascii, "`. The format is wrong."]).

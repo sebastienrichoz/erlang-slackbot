@@ -26,7 +26,7 @@ put_user(Key, Value, Channel) ->
 
 % Insert feeling with corresponding ascii emoji for the specified channel
 put_feeling(Feeling, Emoji, Channel) ->
-  gen_server:call(?MODULE, {put_sentiment, Feeling, Emoji, Channel}).
+  gen_server:call(?MODULE, {put_feeling, Feeling, Emoji, Channel}).
 
 % get user emoji
 get(User, Channel) ->
@@ -36,7 +36,7 @@ get(User, Channel) ->
 get(Channel) ->
   gen_server:call(?MODULE, {get, Channel}).
 
-% get feelings defined in the specified channel
+% get feelings defined in the specified channel + the default ones
 get_feelings(Channel) ->
   gen_server:call(?MODULE, {feelings, Channel}).
 
@@ -63,12 +63,15 @@ init([]) ->
 
 handle_call({feelings, Channel}, _From, State) ->
   Data = kvs_get_feelings(Channel, State#state.emojiMap, State#state.defaultEmojiMap),
+  io:fwrite("Data ~p~n", [Data]),
+
   {reply, Data, State};
 
-handle_call({put_sentiment, Key, Value, Channel}, _From, State) ->
-  NewMap = kvs_put_sentiment(Key, Value, Channel, State#state.emojiMap),
+handle_call({put_feeling, Key, Value, Channel}, _From, State) ->
+  NewMap = kvs_put_feeling(Key, Value, Channel, State#state.emojiMap),
+  io:fwrite("NewMAP ~p~n", [NewMap]),
   Reply = State#state{emojiMap = NewMap},
-  {reply, Reply, State#state{emojiMap = NewMap}};
+  {reply, Reply, Reply};
 
 handle_call({get, Channel}, _From, State) ->
   Data = kvs_get(Channel, State#state.userSentiMap),
@@ -78,11 +81,9 @@ handle_call({get_emoji, Feeling, Channel}, _From, State) ->
   Data = kvs_get_emoji(Feeling, Channel, State#state.emojiMap, State#state.defaultEmojiMap),
   {reply, Data, State};
 
-% clear feelings
-% todo
 handle_call({clear, Channel}, _From, State) ->
-  kvs_clear(Channel),
-  {noreply, State};
+  {NewUserSentiMap, NewEmojiMap} = kvs_clear(Channel, State#state.userSentiMap, State#state.emojiMap),
+  {reply, {NewUserSentiMap, NewEmojiMap}, State#state{emojiMap = NewEmojiMap, userSentiMap = NewUserSentiMap}};
 
 handle_call({member, Feeling, Channel}, _From, State) ->
   Data = kvs_member(Feeling, Channel, State#state.emojiMap, State#state.defaultEmojiMap),
@@ -135,7 +136,7 @@ kvs_put_user(Key, Value, Channel, UserSentiMap) ->
       maps:put(Channel, #{Key => Value}, UserSentiMap)
   end.
 
-kvs_put_sentiment(Key, Value, Channel, EmojiMap) ->
+kvs_put_feeling(Key, Value, Channel, EmojiMap) ->
   case maps:find(Channel, EmojiMap) of
     {ok, Map} ->
       Map2 = maps:put(Key, Value, Map),
@@ -154,7 +155,7 @@ kvs_get_emoji(Key, Channel, EmojiMap, DefaultEmojiMap) ->
   case maps:find(Channel, EmojiMap) of
     {ok, Map} ->
       case maps:find(Key, Map) of
-        {ok, Value} -> Value;
+        {ok, Value} -> {ok, Value};
         error -> maps:find(Key, DefaultEmojiMap)
       end;
     error ->
@@ -162,9 +163,10 @@ kvs_get_emoji(Key, Channel, EmojiMap, DefaultEmojiMap) ->
   end.
 
 % clear feelings
-% todo
-kvs_clear() ->
-  ok.
+kvs_clear(Channel, UserSentiMap, EmojiMap) ->
+  NewUserSentiMap = maps:remove(Channel, UserSentiMap),
+  NewEmojiMap = maps:remove(Channel, EmojiMap),
+  {NewUserSentiMap, NewEmojiMap}.
 
 kvs_member(Feeling, Channel, EmojiMap, DefaultEmojiMap) ->
   case maps:find(Channel, EmojiMap) of
@@ -182,5 +184,6 @@ kvs_get_feelings(Channel, EmojiMap, DefaultEmojiMap) ->
     error -> Keys1 = []
   end,
   Keys2 = maps:keys(DefaultEmojiMap),
-  NotUnique = lists:merge(lists:sort(Keys1), lists:sort(Keys2)),
-  sets:to_list(sets:from_list(NotUnique)). % remove duplicate elements
+  Keys1 ++ Keys2.
+  %NotUnique = lists:merge(lists:sort(Keys1), lists:sort(Keys2)),
+  %sets:to_list(sets:from_list(NotUnique)). % remove duplicate elements
